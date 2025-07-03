@@ -1,0 +1,16 @@
+python-dotenv
+requests
+websocket-client
+pandas>=2.0.0
+pandas_ta
+numpy>=1.24.0
+scipy
+TA-Lib
+flask
+flask-socketio
+plotly>=5.15.0
+dash
+dash-bootstrap-components
+psutil
+streamlit>=1.28.0
+sqlite3 

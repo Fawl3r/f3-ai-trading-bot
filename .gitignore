@@ -1,0 +1,47 @@
+# F3 AI Trading Bot - .gitignore
+
+# Environment and secrets
+config.json
+.env
+*.key
+private_keys/
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Trading specific
+trade_history/
+backtest_results/
+performance_data/
+
+# Temp files
+temp/
+tmp/

@@ -1,0 +1,43 @@
+# HYPERLIQUID OPPORTUNITY HUNTER AI - ENVIRONMENT CONFIGURATION
+# Copy this file to .env and fill in your details
+
+# ===== HYPERLIQUID API CREDENTIALS =====
+# Your Hyperliquid private key (REQUIRED)
+# Get this from Hyperliquid app > API > Generate new API key
+# WARNING: Keep this secret and never share it!
+HYPERLIQUID_PRIVATE_KEY=your_private_key_here
+
+# Your main account address (OPTIONAL - will be derived from private key if not provided)
+HYPERLIQUID_ACCOUNT_ADDRESS=your_account_address_here
+
+# Use testnet? (true/false)
+# Set to 'false' for live trading with real money
+HYPERLIQUID_TESTNET=true
+
+# ===== NOTIFICATION SETTINGS (OPTIONAL) =====
+# Discord webhook URL for trade notifications
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/your_webhook_here
+
+# Telegram bot settings
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+TELEGRAM_CHAT_ID=your_telegram_chat_id
+
+# ===== TRADING CONFIGURATION =====
+# These are set in the code but you can override them here if needed
+# MAX_POSITION_SIZE=0.02  # 2% of balance per trade
+# STOP_LOSS_PCT=0.03      # 3% stop loss
+# TAKE_PROFIT_PCT=0.06    # 6% take profit
+# MAX_DAILY_TRADES=10     # Maximum trades per day
+
+# ===== HYPERLIQUID SPECIFIC NOTES =====
+# 1. Hyperliquid uses private key authentication (not API key/secret like other exchanges)
+# 2. Trading pairs are simple: BTC, ETH, SOL (not BTC-USDT-SWAP)
+# 3. No minimum deposit, but recommended $50+ for effective trading
+# 4. Testnet is fully functional for testing strategies
+# 5. Very fast execution and good liquidity
+
+# ===== SECURITY REMINDERS =====
+# - Never share your private key
+# - Keep this .env file secure and don't commit it to version control
+# - Start with testnet first to test the bot
+# - Use small position sizes initially 

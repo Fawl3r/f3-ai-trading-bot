@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKX Perpetual Trading Bot Dashboard</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: #0d1117; 
+            color: #ffffff; 
+            font-family: 'Arial', sans-serif; 
+            min-height: 100vh;
+        }
+        .dashboard-card { 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .metric-card { 
+            background: linear-gradient(135deg, #238636 0%, #2ea043 100%); 
+            color: white;
+        }
+        .status-good { color: #3fb950; }
+        .status-warning { color: #d29922; }
+        .status-danger { color: #f85149; }
+        .trend-indicator { font-size: 1.2em; font-weight: bold; }
+        .navbar-brand { font-weight: bold; color: #3fb950 !important; }
+        .chart-container { 
+            height: 400px; 
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .metric-value { font-size: 2em; font-weight: bold; color: #3fb950; }
+        .metric-label { font-size: 0.9em; color: #8b949e; }
+        .connection-status { position: fixed; top: 10px; right: 10px; z-index: 1000; }
+        .navbar-dark { background-color: #161b22 !important; }
+        .card { background-color: #161b22; border-color: #30363d; }
+        .card-header { background-color: #21262d; border-color: #30363d; }
+        .btn-primary { background-color: #238636; border-color: #238636; }
+        .btn-primary:hover { background-color: #2ea043; border-color: #2ea043; }
+        .text-muted { color: #8b949e !important; }
+        
+        /* Plotly chart dark mode enhancements */
+        .js-plotly-plot .plotly .main-svg {
+            background: #0d1117 !important;
+        }
+        .js-plotly-plot .plotly .bg {
+            fill: #0d1117 !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="fas fa-robot"></i> OKX Perpetual Trading Bot Dashboard
+            </span>
+            <div class="connection-status">
+                <span id="connectionStatus" class="badge bg-secondary">Connecting...</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <!-- Key Metrics Row -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card dashboard-card metric-card text-center p-3">
+                    <div class="metric-value" id="totalPnl">$0.00</div>
+                    <div class="metric-label">Total PnL</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metric-card text-center p-3">
+                    <div class="metric-value" id="winRate">0%</div>
+                    <div class="metric-label">Win Rate</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metric-card text-center p-3">
+                    <div class="metric-value" id="totalTrades">0</div>
+                    <div class="metric-label">Total Trades</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metric-card text-center p-3">
+                    <div class="metric-value" id="activePositions">0</div>
+                    <div class="metric-label">Active Positions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trend Analysis Row -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-line"></i> Trend Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="trend-indicator" id="trendDirection">SIDEWAYS</div>
+                                <small class="text-muted">Direction</small>
+                            </div>
+                            <div class="col-6">
+                                <div class="trend-indicator" id="trendStrength">MODERATE</div>
+                                <small class="text-muted">Strength</small>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="progress">
+                                <div id="trendConfidence" class="progress-bar bg-info" style="width: 50%">50%</div>
+                            </div>
+                            <small class="text-muted">Confidence</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-heartbeat"></i> System Health</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <div id="cpuUsage">0%</div>
+                                <small class="text-muted">CPU</small>
+                            </div>
+                            <div class="col-4">
+                                <div id="memoryUsage">0%</div>
+                                <small class="text-muted">Memory</small>
+                            </div>
+                            <div class="col-4">
+                                <div id="systemStatus" class="status-good">Healthy</div>
+                                <small class="text-muted">Status</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-area"></i> Performance Chart</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="performanceChart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-exchange-alt"></i> Recent Trades</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="tradesChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Metrics Row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-server"></i> System Metrics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="systemChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Socket.IO connection
+        const socket = io();
+        
+        socket.on('connect', function() {
+            document.getElementById('connectionStatus').textContent = 'Connected';
+            document.getElementById('connectionStatus').className = 'badge bg-success';
+        });
+        
+        socket.on('disconnect', function() {
+            document.getElementById('connectionStatus').textContent = 'Disconnected';
+            document.getElementById('connectionStatus').className = 'badge bg-danger';
+        });
+        
+        socket.on('metrics_update', function(data) {
+            updateDashboard(data);
+        });
+        
+        function updateDashboard(data) {
+            // Update key metrics
+            if (data.trading) {
+                document.getElementById('totalPnl').textContent = `$${(data.trading.total_pnl || 0).toFixed(2)}`;
+                document.getElementById('winRate').textContent = `${(data.trading.win_rate || 0).toFixed(1)}%`;
+                document.getElementById('totalTrades').textContent = data.trading.total_trades || 0;
+                document.getElementById('activePositions').textContent = data.trading.active_positions || 0;
+            }
+            
+            // Update trend analysis
+            if (data.trend) {
+                const direction = data.trend.direction || 'SIDEWAYS';
+                const strength = data.trend.strength || 'MODERATE';
+                const confidence = data.trend.confidence || 50;
+                
+                document.getElementById('trendDirection').textContent = direction.replace('_', ' ');
+                document.getElementById('trendStrength').textContent = strength;
+                document.getElementById('trendConfidence').style.width = `${confidence}%`;
+                document.getElementById('trendConfidence').textContent = `${confidence.toFixed(0)}%`;
+                
+                // Set trend direction color
+                const directionElement = document.getElementById('trendDirection');
+                if (direction.includes('UPTREND')) {
+                    directionElement.className = 'trend-indicator status-good';
+                } else if (direction.includes('DOWNTREND')) {
+                    directionElement.className = 'trend-indicator status-danger';
+                } else {
+                    directionElement.className = 'trend-indicator status-warning';
+                }
+            }
+            
+            // Update system health
+            if (data.system) {
+                document.getElementById('cpuUsage').textContent = `${(data.system.cpu_usage || 0).toFixed(1)}%`;
+                document.getElementById('memoryUsage').textContent = `${(data.system.memory_usage || 0).toFixed(1)}%`;
+                
+                const systemStatus = document.getElementById('systemStatus');
+                const cpu = data.system.cpu_usage || 0;
+                const memory = data.system.memory_usage || 0;
+                
+                if (cpu > 80 || memory > 80) {
+                    systemStatus.textContent = 'Warning';
+                    systemStatus.className = 'status-danger';
+                } else if (cpu > 60 || memory > 60) {
+                    systemStatus.textContent = 'Medium';
+                    systemStatus.className = 'status-warning';
+                } else {
+                    systemStatus.textContent = 'Healthy';
+                    systemStatus.className = 'status-good';
+                }
+            }
+        }
+        
+        // Load charts
+        function loadCharts() {
+            // Load performance chart
+            fetch('/api/charts/performance')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data) {
+                        Plotly.newPlot('performanceChart', data.data, data.layout);
+                    }
+                });
+            
+            // Load system chart
+            fetch('/api/charts/system')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data) {
+                        Plotly.newPlot('systemChart', data.data, data.layout);
+                    }
+                });
+            
+            // Load trades chart
+            fetch('/api/charts/trades')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data) {
+                        Plotly.newPlot('tradesChart', data.data, data.layout);
+                    }
+                });
+        }
+        
+        // Initial load
+        loadCharts();
+        
+        // Refresh charts every 30 seconds
+        setInterval(loadCharts, 30000);
+        
+        // Request immediate update
+        socket.emit('request_update');
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# HYPERLIQUID CONFIGURATION - LIVE TRADING MODE
+# Using MAINNET with real money
+
+HYPERLIQUID_ACCOUNT_ADDRESS=0xAD64671bd7f593B5Eb89CE42553299DAF3c03d1f
+HYPERLIQUID_PRIVATE_KEY=0xda301ce66aff83263dbc996e3514b521d79979bfade1bcdbc6115fc73e9b803d
+HYPERLIQUID_TESTNET=false
+
+# OPTIONAL: Notification Settings
+DISCORD_WEBHOOK_URL=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+
+# ✅ LIVE TRADING CONFIGURATION COMPLETE!
+# ✅ Private key: Valid (66 characters: 0x + 64 hex)
+# ✅ Wallet address: Matches the private key  
+# ✅ Account funded: $51.63 REAL MONEY
+# 🚀 MAINNET MODE: Ready for live trading!
+
+# INSTRUCTIONS:
+# 1. Copy this content to a file named ".env" in your project folder
+# 2. Replace "YOUR_64_CHARACTER_PRIVATE_KEY_HERE" with your actual private key
+# 3. Your private key should be 66 characters total (0x + 64 hex characters)
+# 4. Example format: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef 

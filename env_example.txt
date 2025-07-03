@@ -1,0 +1,11 @@
+# OKX API Credentials (get from https://www.okx.com/account/my-api)
+OKX_API_KEY=your_api_key_here
+OKX_API_SECRET=your_api_secret_here
+OKX_API_PASSPHRASE=your_passphrase_here
+
+# Trading Configuration
+SIMULATED_TRADING=1  # Set to 0 for live trading (DANGEROUS!)
+POSITION_SIZE_USD=100
+LEVERAGE=10
+STOP_LOSS_PCT=2.0
+TAKE_PROFIT_PCT=3.0 

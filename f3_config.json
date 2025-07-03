@@ -1,0 +1,51 @@
+{
+    "bot_name": "F3 AI Trading Bot",
+    "version": "1.0.0",
+    "created_by": "F3 AI Systems",
+    "hyperliquid": {
+        "private_key": "",
+        "wallet_address": "",
+        "is_mainnet": true
+    },
+    "trading": {
+        "pairs": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "DOGE",
+            "AVAX",
+            "LINK",
+            "UNI",
+            "ADA",
+            "DOT",
+            "MATIC",
+            "NEAR",
+            "ATOM",
+            "FTM",
+            "SAND",
+            "CRV"
+        ],
+        "base_position_size": 1.0,
+        "max_position_size": 4.0,
+        "stop_loss_pct": 2.0,
+        "max_open_positions": 3
+    },
+    "momentum": {
+        "volume_spike_threshold": 2.0,
+        "parabolic_threshold": 0.8,
+        "big_swing_threshold": 0.6
+    },
+    "sentiment": {
+        "twitter": 0.25,
+        "reddit": 0.2,
+        "telegram": 0.15,
+        "news": 0.2,
+        "tradingview": 0.2
+    },
+    "fail_safe": {
+        "level_1": 5.0,
+        "level_2": 10.0,
+        "level_3": 15.0,
+        "level_4": 20.0
+    }
+}
