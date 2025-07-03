@@ -1,0 +1,135 @@
+                  END-USER LICENSE AGREEMENT (EULA)
+               for Software Published by F3 AI Labs, LLC
+          Copyright © 2025 Johnny Fawler (“Fawl3r”) All rights reserved
+========================================================================
+IMPORTANT—READ CAREFULLY.  BY DOWNLOADING, INSTALLING, OR USING THE
+SOFTWARE (DEFINED BELOW) YOU (“LICENSEE”) AGREE TO BE BOUND BY THE TERMS
+OF THIS END-USER LICENSE AGREEMENT (“AGREEMENT”).  IF YOU DO NOT ACCEPT
+THESE TERMS, DO NOT INSTALL OR USE THE SOFTWARE.
+
+1.  DEFINITIONS
+    1.1 “**Licensor**” means Johnny Fawler, doing business as **F3 AI Labs, LLC**.  
+    1.2 “**Software**” means the executable code, source code, scripts,
+        models, documentation, sample files, digital assets, and any
+        updates supplied by Licensor, identified as **[F3 AI Trading Bot]**.
+    1.3 “**Non-Commercial Use**” means personal, educational, or internal
+        evaluation use that does **not** generate direct or indirect
+        revenue, financial gain, or commercial advantage.
+    1.4 “**Commercial Use**” means any use other than Non-Commercial Use,
+        including but not limited to SaaS hosting, resale, consulting,
+        in-house production, or providing competitive services.
+
+2.  LICENSE GRANT
+    2.1 **Non-Commercial License.**  Subject to Licensee’s continued
+        compliance with this Agreement, Licensor grants Licensee a
+        non-exclusive, non-transferable, non-sublicensable, worldwide
+        license to:
+        (a) install and run one (1) copy of the Software solely for
+            Non-Commercial Use;  
+        (b) modify the source code for internal evaluation; and  
+        (c) reproduce limited excerpts (≤50 lines) in academic or
+            journalistic works, provided all copyright notices remain.
+    2.2 **Commercial License Required.**  Any Commercial Use requires a
+        separate written license agreement with Licensor and payment of
+        applicable fees.  Contact <legal@f3ailabs.com> for terms.
+
+3.  LICENSE RESTRICTIONS
+    Except as expressly permitted in Section 2, Licensee shall **not**:
+    (a) sublicense, sell, rent, lease, lend, distribute, publish,
+        display, or otherwise make the Software available to any third
+        party;  
+    (b) use the Software in a production, hosted, or revenue-generating
+        environment without a Commercial License;  
+    (c) remove, obscure, or alter any copyright, trademark, or other
+        proprietary notices;  
+    (d) claim authorship of, or misrepresent, the Software or derivative
+        works;  
+    (e) reverse-engineer, decompile, or disassemble any portion of the
+        Software not provided in source form, except where such
+        prohibition is forbidden by applicable law;  
+    (f) use the Software to train, fine-tune, or benchmark competing
+        machine-learning models; or  
+    (g) use the Software in connection with weapons systems, illegal
+        activities, or activities that violate export laws.
+
+4.  OWNERSHIP & INTELLECTUAL PROPERTY
+    The Software is licensed, not sold.  Title, ownership, and all
+    intellectual-property rights in the Software and all copies remain
+    with Licensor.  The names “F3 AI Labs,” “F3Assistant,” “F3,” the
+    F3 logo, and “Fawl3r” are trademarks of Licensor.  No rights to
+    trademarks are granted under this Agreement.
+
+5.  FEEDBACK
+    Any suggestions, improvements, or feedback (“Feedback”) submitted
+    by Licensee are optional and, if provided, become the sole property
+    of Licensor without obligation or compensation.
+
+6.  UPDATES & SUPPORT
+    Licensor may, but is not obligated to, provide bug fixes, patches,
+    or updates.  All updates are deemed part of the Software and subject
+    to this Agreement.  No dedicated support is included under the
+    Non-Commercial License.
+
+7.  TERM & TERMINATION
+    7.1 **Term.**  This Agreement is effective upon Licensee’s first
+        download or use of the Software and continues until terminated.
+    7.2 **Termination for Cause.**  Licensor may terminate immediately
+        if Licensee breaches any provision.  
+    7.3 **Effect of Termination.**  Upon termination, all rights granted
+        to Licensee cease, and Licensee must destroy all copies of the
+        Software.  Sections 3, 4, 5, 7.3, 8, 9, 10, 11, and 13 survive.
+
+8.  DISCLAIMER OF WARRANTIES  
+    THE SOFTWARE IS PROVIDED “AS IS” AND “AS AVAILABLE.”  LICENSOR
+    DISCLAIMS ALL WARRANTIES—EXPRESS, IMPLIED, OR STATUTORY—INCLUDING
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT,
+    AND TITLE.  LICENSEE ASSUMES ALL RISK ARISING FROM USE OF THE
+    SOFTWARE.
+
+9.  LIMITATION OF LIABILITY  
+    TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR SHALL NOT BE LIABLE
+    FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE
+    DAMAGES, OR FOR LOST PROFITS, DATA, OR BUSINESS, EVEN IF ADVISED OF
+    THE POSSIBILITY.  LICENSOR’S AGGREGATE LIABILITY SHALL NOT EXCEED
+    USD $100.
+
+10. INDEMNIFICATION  
+    Licensee agrees to defend, indemnify, and hold harmless Licensor
+    from any claims, damages, liabilities, and expenses (including
+    attorneys’ fees) arising from Licensee’s use or misuse of the
+    Software or breach of this Agreement.
+
+11. EXPORT & SANCTIONS COMPLIANCE  
+    Licensee shall not export or re-export the Software except in full
+    compliance with U.S. and other applicable export control laws and
+    regulations.
+
+12. U.S. GOVERNMENT END USERS  
+    The Software is “commercial computer software” under FAR 12.212 and
+    DFARS 227.7202.  Government users acquire it with only those rights
+    granted to all other end users, consistent with this Agreement.
+
+13. GOVERNING LAW & DISPUTE RESOLUTION  
+    This Agreement is governed by and construed in accordance with the
+    laws of **[ILLINOIS / USA]**, excluding conflict-of-law rules.  Any
+    dispute shall be resolved by **[binding arbitration / courts located
+    in CHICAGO, IL]**.  The Parties waive class-action claims.
+
+14. SEVERABILITY  
+    If any provision is held unenforceable, the remaining provisions
+    remain in full force.  The invalid provision shall be interpreted to
+    best accomplish its intent within legal limits.
+
+15. ENTIRE AGREEMENT  
+    This Agreement constitutes the entire understanding between the
+    Parties concerning the Software and supersedes all prior or
+    contemporaneous oral or written communications.
+
+16. ASSIGNMENT  
+    Licensee may not assign or transfer this Agreement without Licensor’s
+    prior written consent.  Licensor may assign freely.
+
+
+
+=======================================================================
+                         -- END OF AGREEMENT --

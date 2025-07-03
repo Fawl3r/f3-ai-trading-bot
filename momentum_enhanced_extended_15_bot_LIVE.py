@@ -94,15 +94,21 @@ class MomentumEnhancedBot:
 
     def setup_hyperliquid(self):
         try:
-            # Use proper API URL constants
-            api_url = constants.MAINNET_API_URL if self.config['is_mainnet'] else constants.TESTNET_API_URL
+            # FIXED: Use proper API URL, not wallet address
+            api_url = "https://api.hyperliquid.xyz" if self.config['is_mainnet'] else "https://api.hyperliquid-testnet.xyz"
             self.info = Info(api_url)
             
             if self.config.get('private_key'):
                 self.exchange = Exchange(self.info, self.config['private_key'])
-            logger.info("Hyperliquid connection established")
+            logger.info(f"✅ Hyperliquid connection established: {api_url}")
         except Exception as e:
-            logger.error(f"Connection error: {e}")
+            logger.error(f"❌ Connection error: {e}")
+            # Fallback
+            try:
+                self.info = Info()
+                logger.info("✅ Fallback connection successful")
+            except:
+                logger.error("❌ All connections failed")
 
     def get_balance(self):
         try:
