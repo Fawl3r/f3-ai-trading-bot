@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "created_by": "F3 AI Systems",
     "hyperliquid": {
-        "private_key": "",
-        "wallet_address": "",
+        "private_key": "YOUR_HYPERLIQUID_PRIVATE_KEY_HERE",
+        "wallet_address": "YOUR_WALLET_ADDRESS_HERE",
         "is_mainnet": true
     },
     "trading": {
