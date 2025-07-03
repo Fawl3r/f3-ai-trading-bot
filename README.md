@@ -109,4 +109,4 @@ This bot is for educational and research purposes. Always:
 - start_f3_bot.bat (Windows launcher)
 
 ## LICENSE
-MIT License - Open source and free to use
+END-USER LICENSE AGREEMENT (EULA)
