@@ -69,8 +69,8 @@ class HyperliquidOpportunityHunter:
         if not self.private_key:
             raise ValueError("HYPERLIQUID_PRIVATE_KEY not found in environment variables")
         
-        # Trading configuration
-        self.testnet = True  # Set to False for mainnet
+        # Trading configuration  
+        # Note: testnet setting comes from environment variable above
         self.max_position_size = 0.02  # 2% of balance per trade
         self.stop_loss_pct = 0.03  # 3% stop loss
         self.take_profit_pct = 0.06  # 6% take profit
