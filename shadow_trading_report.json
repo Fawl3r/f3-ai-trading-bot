@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-07-06T17:44:30.349085",
+  "metrics": {
+    "total_trades": 1,
+    "winning_trades": 0,
+    "losing_trades": 1,
+    "win_rate": 0.0,
+    "avg_win": 0,
+    "avg_loss": -0.2792568980426432,
+    "total_pnl": -0.2792568980426432,
+    "total_return": -0.5585137960852933,
+    "profit_factor": 0.0,
+    "max_drawdown": 8.0,
+    "avg_r_multiple": -0.7446850614470486,
+    "balance": 49.72074310195735
+  },
+  "validation": {
+    "target_fills": 200,
+    "target_profit_factor": 2.0,
+    "target_max_drawdown": 3.0,
+    "fills_pass": false,
+    "pf_pass": false,
+    "dd_pass": false,
+    "gates_passed": 0,
+    "overall_pass": false
+  },
+  "risk_events": true
+}

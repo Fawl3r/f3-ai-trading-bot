@@ -1,0 +1,64 @@
+{
+  "test_date": "2025-07-05T16:09:16.085319",
+  "avg_expectancy": -0.0004781038805831748,
+  "avg_profit_factor": 0.9204087975091048,
+  "results": [
+    {
+      "config": "30-Day Edge Test",
+      "results": {
+        "total_trades": 23,
+        "win_rate": 0.13043478260869565,
+        "expectancy": -0.002097134077636872,
+        "profit_factor": 0.591953571581973,
+        "avg_win": 0.02339145772440394,
+        "avg_loss": -0.0059204228479429934,
+        "max_drawdown": 0.0035462863051006935,
+        "sharpe_ratio": -3.3376249674209832,
+        "final_balance": 9985.52950539056,
+        "total_return": -0.0014470494609440721,
+        "training_results": {
+          "rf_main": 0.5043002345582487,
+          "gb_main": 0.4988272087568413
+        }
+      }
+    },
+    {
+      "config": "60-Day Edge Test",
+      "results": {
+        "total_trades": 11,
+        "win_rate": 0.2727272727272727,
+        "expectancy": 0.0014933917892458234,
+        "profit_factor": 1.3391000890336073,
+        "avg_win": 0.021606247769667145,
+        "avg_loss": -0.006048929203412171,
+        "max_drawdown": 0.0007110598200746608,
+        "sharpe_ratio": 1.90801000259181,
+        "final_balance": 10004.921654241842,
+        "total_return": 0.000492165424184168,
+        "training_results": {
+          "rf_main": 0.538252427184466,
+          "gb_main": 0.5324271844660194
+        }
+      }
+    },
+    {
+      "config": "90-Day Edge Test",
+      "results": {
+        "total_trades": 60,
+        "win_rate": 0.21666666666666667,
+        "expectancy": -0.0008305693533584759,
+        "profit_factor": 0.830172731911734,
+        "avg_win": 0.0187709531187248,
+        "avg_loss": -0.006252267058402786,
+        "max_drawdown": 0.003122071337944542,
+        "sharpe_ratio": -1.272342910753393,
+        "final_balance": 9985.03179186653,
+        "total_return": -0.0014968208133470397,
+        "training_results": {
+          "rf_main": 0.546112115732369,
+          "gb_main": 0.515370705244123
+        }
+      }
+    }
+  ]
+}

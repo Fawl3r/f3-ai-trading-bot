@@ -1,0 +1,263 @@
+# Elite Trading System - 100%/5% Operating Manual Configuration
+# Targets +100% monthly returns with maximum 5% drawdown
+# Maintains current edge (PF≈2.3, WR≈40%) with enhanced risk management
+
+system:
+  name: "Elite 100/5 Trading System"
+  version: "1.0.0"
+  target_monthly_return: 100.0  # %
+  max_monthly_drawdown: 5.0     # %
+  
+# Risk Management Engine Settings
+risk_management:
+  # Core risk parameters
+  base_risk_pct: 0.50           # Base 0.5% risk per trade
+  max_risk_pct: 0.65            # ATR throttle cap
+  
+  # ATR Throttle System
+  atr_throttle_enabled: true
+  atr_reference_period: 20      # ATR reference period
+  atr_throttle_formula: "risk_pct = base_risk_pct * (ATR20 / ATR_ref)"
+  
+  # Equity Drawdown Scaler
+  equity_dd_threshold: 3.5      # DD threshold for scaling (%)
+  equity_dd_scaler: 0.7         # Risk reduction factor when DD > threshold
+  
+  # Position Management
+  max_concurrent_positions: 2
+  correlation_threshold: 0.6    # Max correlation between positions
+  pyramid_add_on: 0.3          # R multiple for add-ons (was 0.5)
+  max_pyramid_levels: 2        # Maximum pyramid levels per position
+  
+  # Dynamic Loss-Halt Matrix
+  daily_r_halt_threshold: -3.0     # Halt if daily R P&L <= -3R
+  rolling_pf_halt_threshold: 1.0   # Halt if 20-trade PF < 1.0
+  max_dd_emergency: 5.0            # Emergency halt at 5% DD
+  max_dd_warning: 4.0              # Warning at 4% DD
+  halt_duration_hours: 12          # Standard halt duration
+  emergency_halt_hours: 24         # Emergency halt duration
+  
+  # Latency Monitoring
+  latency_p95_threshold: 250.0     # ms - Cancel orders if exceeded
+  latency_check_interval: 60       # seconds
+  
+# Edge-Preservation Tweaks
+edge_preservation:
+  # Parabolic Burst Trading
+  burst_trade_enabled: true
+  burst_trade_start_hour: 13        # UTC
+  burst_trade_end_hour: 18          # UTC
+  burst_size_reduction: 0.7         # Size reduction outside burst hours
+  
+  # Fade (Top/Bottom) Requirements
+  fade_requirements:
+    require_delta_volume_climax: true
+    require_rsi_divergence: true
+    two_of_two_rule: true           # Both conditions must be met
+  
+  # Hedge Micro-Basket
+  hedge_enabled: true
+  hedge_size_reduction: 0.7         # Size reduction for correlated positions
+  hedge_pairs:
+    - ["SOL-USD", "BTC-USD"]        # Example hedge pairs
+    - ["ETH-USD", "BTC-USD"]
+    - ["AVAX-USD", "SOL-USD"]
+
+# Trade Frequency & Asset Rotation
+trade_frequency:
+  target_trades_per_month: 265      # Based on 100% / 0.378% expectancy
+  current_monthly_rate: 180         # Current observed rate
+  
+  # Multi-Asset Rotation
+  max_active_assets: 2              # Top-2 coin rotation
+  asset_selection_frequency: "daily" # Run asset selector nightly
+  pf_ranking_enabled: true          # Select based on PF ranking
+  
+  # Asset Universe
+  asset_universe:
+    - "BTC-USD"
+    - "ETH-USD"
+    - "SOL-USD"
+    - "AVAX-USD"
+    - "ARB-USD"
+    - "MATIC-USD"
+    - "DOT-USD"
+    - "LINK-USD"
+
+# Signal Configuration
+signals:
+  # Parabolic Burst
+  parabolic_burst:
+    enabled: true
+    time_filter: "13:00-18:00 UTC"
+    size_multiplier_outside_hours: 0.7
+    min_volume_ratio: 1.5
+    
+  # Fade Signals
+  fade_signals:
+    enabled: true
+    require_volume_climax: true
+    require_rsi_divergence: true
+    min_signal_strength: 2.5
+    
+  # Breakout Signals
+  breakout_signals:
+    enabled: true
+    min_volume_confirmation: 2.0
+    atr_filter_enabled: true
+
+# AI Learning System
+ai_learning:
+  enabled: true
+  learning_rate: 0.02
+  min_sample_size: 10
+  confidence_threshold: 0.45
+  pattern_recognition: true
+  adaptive_parameters: true
+  
+  # AI Model Configuration
+  model_path: "elite_ai_learning.db"
+  backup_frequency: "daily"
+  reset_threshold: 1000  # Reset after 1000 trades if performance degrades
+  
+  # Learning Parameters
+  signal_weight_adaptation: true
+  pattern_blacklisting: true
+  parameter_adaptation: true
+  
+  # Performance Tracking
+  track_signal_performance: true
+  track_pattern_success: true
+  track_parameter_evolution: true
+
+# Monitoring & Alerting
+monitoring:
+  prometheus_enabled: true
+  prometheus_port: 8000
+  
+  # Key Performance Indicators
+  kpis:
+    equity_dd_pct:
+      warning_threshold: 4.0
+      emergency_threshold: 5.0
+    
+    profit_factor_30:
+      warning_threshold: 1.6
+      
+    trade_count_24h:
+      min_threshold: 5
+      max_threshold: 40  # 2x mean daily rate
+      
+    risk_pct_live:
+      max_threshold: 0.65
+      
+    latency_p95:
+      max_threshold: 250.0
+  
+  # Alert Destinations
+  alerts:
+    telegram_enabled: true
+    telegram_chat_id: "YOUR_CHAT_ID"
+    email_enabled: false
+    webhook_enabled: false
+
+# Live Deployment Ladder
+deployment:
+  phases:
+    ramp_0:
+      name: "Initial Ramp"
+      duration_trades: 150
+      risk_per_trade: 0.50
+      success_criteria:
+        min_pf: 2.0
+        max_dd: 3.0
+      
+    ramp_1:
+      name: "Validation Ramp"
+      duration_trades: 150
+      risk_per_trade: 0.50
+      auto_reduce_trigger: 4.0    # Auto reduce to 0.35% if DD > 4%
+      auto_reduce_target: 0.35
+      recovery_threshold: 2.0     # Resume normal risk when DD < 2%
+      
+    maintenance:
+      name: "Full Production"
+      risk_per_trade: 0.50
+      atr_throttle_active: true
+      validation_frequency: "weekly"
+      model_update_frequency: "monthly"
+
+# Audit & Fail-Safe
+audit:
+  # Database Backup
+  db_backup_enabled: true
+  backup_frequency: "daily"
+  s3_sync_enabled: true
+  s3_bucket: "elite-trading-audit"
+  s3_prefix: "shadow_trades_prod"
+  
+  # Model Versioning
+  model_versioning: true
+  model_sha_tracking: true
+  rollback_enabled: true
+  
+  # Emergency Procedures
+  emergency_revert:
+    enabled: true
+    fallback_model: "prev_good.pt"
+    emergency_risk_pct: 0.25
+    manual_approval_required: true
+
+# Performance Targets
+targets:
+  # Monthly Performance
+  monthly_return_target: 100.0      # %
+  monthly_drawdown_limit: 5.0       # %
+  
+  # Trade Performance
+  min_profit_factor: 2.0
+  min_win_rate: 35.0               # % (conservative estimate)
+  max_consecutive_losses: 5
+  
+  # Risk Metrics
+  max_daily_var: 2.0               # % of account
+  max_position_correlation: 0.6
+  max_leverage_equivalent: 3.0     # Effective leverage
+
+# System Health Checks
+health_checks:
+  # Data Feed Health
+  data_feed_timeout: 30            # seconds
+  price_staleness_threshold: 60    # seconds
+  
+  # Execution Health
+  order_fill_timeout: 10           # seconds
+  slippage_threshold: 0.5          # % of expected
+  
+  # System Resources
+  memory_usage_threshold: 80       # %
+  cpu_usage_threshold: 70          # %
+  disk_usage_threshold: 90         # %
+
+# Development & Testing
+development:
+  shadow_trading_enabled: true
+  shadow_db_path: "shadow_trades_prod.db"
+  
+  # Testing Parameters
+  backtest_validation_period: 90   # days
+  walk_forward_window: 30          # days
+  monte_carlo_runs: 1000
+  
+  # Debug Settings
+  debug_mode: false
+  verbose_logging: false
+  trade_simulation_mode: false
+
+# TL;DR Configuration Summary
+# Lock base_risk_pct at 0.005 (0.5%)
+# Activate ATR throttle, equity DD scaler, and 2-coin rotation
+# Cap concurrent positions at 2, pyramids at +0.3R
+# Shadow-test 150 trades: PF ≥ 2, DD ≤ 3%
+# Alerts fire at DD 4% (warn) / 5% (halt)
+# Target: +100% monthly with worst-case DD ≤ 5% 

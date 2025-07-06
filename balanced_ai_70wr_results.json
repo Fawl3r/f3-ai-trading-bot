@@ -1,0 +1,57 @@
+{
+  "test_date": "2025-07-05T15:28:42.337889",
+  "overall_win_rate": 0,
+  "total_trades": 0,
+  "total_pnl": 0,
+  "conclusion": "NEEDS_WORK",
+  "results": [
+    {
+      "config": "Balanced 14-Day",
+      "results": {
+        "total_trades": 0,
+        "winning_trades": 0,
+        "win_rate": 0,
+        "total_pnl": 0,
+        "avg_pnl": 0,
+        "training_results": {
+          "rf_conservative": 0.47093023255813954,
+          "gb_aggressive": 0.498546511627907,
+          "lr_balanced": 0.4171511627906977
+        }
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": "Balanced 21-Day",
+      "results": {
+        "total_trades": 0,
+        "winning_trades": 0,
+        "win_rate": 0,
+        "total_pnl": 0,
+        "avg_pnl": 0,
+        "training_results": {
+          "rf_conservative": 0.46397694524495675,
+          "gb_aggressive": 0.4543707973102786,
+          "lr_balanced": 0.36023054755043227
+        }
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": "Balanced 30-Day",
+      "results": {
+        "total_trades": 0,
+        "winning_trades": 0,
+        "win_rate": 0,
+        "total_pnl": 0,
+        "avg_pnl": 0,
+        "training_results": {
+          "rf_conservative": 0.4109772423025435,
+          "gb_aggressive": 0.44377510040160645,
+          "lr_balanced": 0.3473895582329317
+        }
+      },
+      "status": "\u274c Below Target"
+    }
+  ]
+}

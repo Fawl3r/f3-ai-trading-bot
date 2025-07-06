@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "test_date": "2025-07-04T19:13:59.094909",
+    "scenarios_tested": 3,
+    "results": [
+      {
+        "scenario": "1 Week Test",
+        "final_balance": 54.464067316050105,
+        "return_pct": 8.92813463210021,
+        "win_rate": 0.4,
+        "total_trades": 110,
+        "sharpe_ratio": 0.051031036307983946,
+        "max_drawdown": 11.32557879485699
+      },
+      {
+        "scenario": "2 Week Test",
+        "final_balance": 35.105311042500176,
+        "return_pct": -29.789377914999648,
+        "win_rate": 0.34297520661157027,
+        "total_trades": 242,
+        "sharpe_ratio": -0.07234627541251193,
+        "max_drawdown": 41.173464954235925
+      },
+      {
+        "scenario": "1 Month Test",
+        "final_balance": 56.234508928900155,
+        "return_pct": 12.46901785780031,
+        "win_rate": 0.38589211618257263,
+        "total_trades": 482,
+        "sharpe_ratio": 0.022374687365396558,
+        "max_drawdown": 36.65518839339971
+      }
+    ]
+  }
+}

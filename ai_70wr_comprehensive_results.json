@@ -1,0 +1,220 @@
+{
+  "test_date": "2025-07-04T20:14:20.038634",
+  "target_win_rate": 0.7,
+  "overall_win_rate": 0.3847072879330944,
+  "total_trades": 3348,
+  "tests_achieving_target": 0,
+  "total_tests": 5,
+  "detailed_results": [
+    {
+      "config": {
+        "name": "Conservative 7-Day",
+        "days": 7,
+        "balance": 50
+      },
+      "results": {
+        "initial_balance": 50,
+        "final_balance": 52.21162091233518,
+        "total_trades": 236,
+        "winning_trades": 93,
+        "win_rate": 0.3940677966101695,
+        "total_return_pct": 4.423241824670356,
+        "max_drawdown_pct": 0.6153639678742144,
+        "ai_avg_confidence": 1.0,
+        "profitable_by_confidence": {},
+        "regime_performance": {
+          "BULL_TREND": {
+            "trades": 43,
+            "win_rate": 0.4186046511627907,
+            "avg_pnl": 0.013183907910036017
+          },
+          "BEAR_TREND": {
+            "trades": 37,
+            "win_rate": 0.35135135135135137,
+            "avg_pnl": 0.007059462909656009
+          },
+          "RANGE_BOUND": {
+            "trades": 132,
+            "win_rate": 0.42424242424242425,
+            "avg_pnl": 0.011728632913246512
+          },
+          "HIGH_VOLATILITY": {
+            "trades": 24,
+            "win_rate": 0.25,
+            "avg_pnl": -0.006861116666760456
+          }
+        },
+        "avg_holding_time": 20.93220338983051
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": {
+        "name": "Conservative 14-Day",
+        "days": 14,
+        "balance": 50
+      },
+      "results": {
+        "initial_balance": 50,
+        "final_balance": 54.78336794806099,
+        "total_trades": 508,
+        "winning_trades": 198,
+        "win_rate": 0.38976377952755903,
+        "total_return_pct": 9.566735896121983,
+        "max_drawdown_pct": 1.3643515776546045,
+        "ai_avg_confidence": 1.0,
+        "profitable_by_confidence": {},
+        "regime_performance": {
+          "BULL_TREND": {
+            "trades": 125,
+            "win_rate": 0.384,
+            "avg_pnl": 0.009521828770903514
+          },
+          "BEAR_TREND": {
+            "trades": 70,
+            "win_rate": 0.38571428571428573,
+            "avg_pnl": 0.008128974230472097
+          },
+          "RANGE_BOUND": {
+            "trades": 255,
+            "win_rate": 0.3843137254901961,
+            "avg_pnl": 0.009145907797415226
+          },
+          "HIGH_VOLATILITY": {
+            "trades": 58,
+            "win_rate": 0.43103448275862066,
+            "avg_pnl": 0.011929390814208553
+          }
+        },
+        "avg_holding_time": 20.334645669291337
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": {
+        "name": "Conservative 30-Day",
+        "days": 30,
+        "balance": 50
+      },
+      "results": {
+        "initial_balance": 50,
+        "final_balance": 57.914447499225844,
+        "total_trades": 1035,
+        "winning_trades": 389,
+        "win_rate": 0.37584541062801935,
+        "total_return_pct": 15.828894998451688,
+        "max_drawdown_pct": 1.3853867639926483,
+        "ai_avg_confidence": 1.0,
+        "profitable_by_confidence": {},
+        "regime_performance": {
+          "BULL_TREND": {
+            "trades": 209,
+            "win_rate": 0.41148325358851673,
+            "avg_pnl": 0.012518502764674231
+          },
+          "BEAR_TREND": {
+            "trades": 158,
+            "win_rate": 0.34810126582278483,
+            "avg_pnl": 0.004068909312247717
+          },
+          "RANGE_BOUND": {
+            "trades": 530,
+            "win_rate": 0.3622641509433962,
+            "avg_pnl": 0.005982948283810698
+          },
+          "HIGH_VOLATILITY": {
+            "trades": 138,
+            "win_rate": 0.4057971014492754,
+            "avg_pnl": 0.010755291011986533
+          }
+        },
+        "avg_holding_time": 19.6231884057971
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": {
+        "name": "Medium 14-Day",
+        "days": 14,
+        "balance": 100
+      },
+      "results": {
+        "initial_balance": 100,
+        "final_balance": 105.46537746850838,
+        "total_trades": 487,
+        "winning_trades": 193,
+        "win_rate": 0.39630390143737165,
+        "total_return_pct": 5.465377468508379,
+        "max_drawdown_pct": 0.48858553188751447,
+        "ai_avg_confidence": 1.0,
+        "profitable_by_confidence": {},
+        "regime_performance": {
+          "BULL_TREND": {
+            "trades": 78,
+            "win_rate": 0.46153846153846156,
+            "avg_pnl": 0.02010583682320025
+          },
+          "BEAR_TREND": {
+            "trades": 57,
+            "win_rate": 0.38596491228070173,
+            "avg_pnl": 0.009649940243683248
+          },
+          "RANGE_BOUND": {
+            "trades": 268,
+            "win_rate": 0.3619402985074627,
+            "avg_pnl": 0.0069947164758737196
+          },
+          "HIGH_VOLATILITY": {
+            "trades": 84,
+            "win_rate": 0.4523809523809524,
+            "avg_pnl": 0.01752966174850586
+          }
+        },
+        "avg_holding_time": 19.589322381930184
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": {
+        "name": "Large 30-Day",
+        "days": 30,
+        "balance": 200
+      },
+      "results": {
+        "initial_balance": 200,
+        "final_balance": 209.30187778986345,
+        "total_trades": 1082,
+        "winning_trades": 415,
+        "win_rate": 0.3835489833641405,
+        "total_return_pct": 4.650938894931727,
+        "max_drawdown_pct": 0.3376735832750949,
+        "ai_avg_confidence": 1.0,
+        "profitable_by_confidence": {},
+        "regime_performance": {
+          "BULL_TREND": {
+            "trades": 188,
+            "win_rate": 0.44680851063829785,
+            "avg_pnl": 0.017092751212625715
+          },
+          "BEAR_TREND": {
+            "trades": 166,
+            "win_rate": 0.3373493975903614,
+            "avg_pnl": 0.0030812752678722253
+          },
+          "RANGE_BOUND": {
+            "trades": 549,
+            "win_rate": 0.37340619307832423,
+            "avg_pnl": 0.006906248629339773
+          },
+          "HIGH_VOLATILITY": {
+            "trades": 179,
+            "win_rate": 0.39106145251396646,
+            "avg_pnl": 0.009974404301201736
+          }
+        },
+        "avg_holding_time": 19.91682070240296
+      },
+      "status": "\u274c Below Target"
+    }
+  ]
+}

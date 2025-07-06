@@ -1,0 +1,176 @@
+{
+  "test_date": "2025-07-04T19:21:13.934988",
+  "initial_balance": 50.0,
+  "assets_tested": [
+    "ETH",
+    "AVAX",
+    "DOGE"
+  ],
+  "results": [
+    {
+      "days": 7,
+      "results": {
+        "overall": {
+          "initial_balance": 50.0,
+          "final_balance": 45.83912159991478,
+          "total_trades": 75,
+          "winning_trades": 24,
+          "losing_trades": 51,
+          "win_rate": 0.32,
+          "total_return_pct": -8.321756800170434,
+          "total_pnl": -4.160878400085219,
+          "max_drawdown_pct": 11.861834075371998,
+          "avg_holding_time": 13.612696755555556
+        },
+        "by_asset": {
+          "ETH": {
+            "trades": 9,
+            "winning_trades": 1,
+            "losing_trades": 8,
+            "win_rate": 0.1111111111111111,
+            "total_pnl": -1.7929061738005616,
+            "avg_win": 0.5032677159268654,
+            "avg_loss": -0.2870217362159283,
+            "largest_win": 0.5032677159268654,
+            "largest_loss": -0.303240202525479,
+            "avg_holding_time": 9.444444444444445
+          },
+          "AVAX": {
+            "trades": 31,
+            "winning_trades": 12,
+            "losing_trades": 19,
+            "win_rate": 0.3870967741935484,
+            "total_pnl": -0.3734090179506555,
+            "avg_win": 0.287650500873931,
+            "avg_loss": -0.20132710675988574,
+            "largest_win": 0.3540684123417186,
+            "largest_loss": -0.24125721746777484,
+            "avg_holding_time": 12.93394376344086
+          },
+          "DOGE": {
+            "trades": 35,
+            "winning_trades": 11,
+            "losing_trades": 24,
+            "win_rate": 0.3142857142857143,
+            "total_pnl": -1.9945632083340017,
+            "avg_win": 0.2732168688024413,
+            "avg_loss": -0.20833119854836898,
+            "largest_win": 0.3279835397631617,
+            "largest_loss": -0.23637320086143454,
+            "avg_holding_time": 15.285714285714286
+          }
+        }
+      }
+    },
+    {
+      "days": 14,
+      "results": {
+        "overall": {
+          "initial_balance": 50.0,
+          "final_balance": 36.707056194718525,
+          "total_trades": 173,
+          "winning_trades": 41,
+          "losing_trades": 132,
+          "win_rate": 0.23699421965317918,
+          "total_return_pct": -26.585887610562946,
+          "total_pnl": -13.292943805281444,
+          "max_drawdown_pct": 27.469632459362696,
+          "avg_holding_time": 11.97644839874759
+        },
+        "by_asset": {
+          "ETH": {
+            "trades": 32,
+            "winning_trades": 8,
+            "losing_trades": 24,
+            "win_rate": 0.25,
+            "total_pnl": -2.8898618011010098,
+            "avg_win": 0.41981415094843555,
+            "avg_loss": -0.2603489586953539,
+            "largest_win": 0.46213051671002553,
+            "largest_loss": -0.30048496051091256,
+            "avg_holding_time": 13.90625
+          },
+          "AVAX": {
+            "trades": 79,
+            "winning_trades": 19,
+            "losing_trades": 60,
+            "win_rate": 0.24050632911392406,
+            "total_pnl": -5.738253843341788,
+            "avg_win": 0.25645342275159777,
+            "avg_loss": -0.17684781459370244,
+            "largest_win": 0.3298665923180225,
+            "largest_loss": -0.2373295382798303,
+            "avg_holding_time": 11.962025316455696
+          },
+          "DOGE": {
+            "trades": 62,
+            "winning_trades": 14,
+            "losing_trades": 47,
+            "win_rate": 0.22580645161290322,
+            "total_pnl": -4.664828160838644,
+            "avg_win": 0.2533596226771058,
+            "avg_loss": -0.17472048677272609,
+            "largest_win": 0.30929873579542233,
+            "largest_loss": -0.25086959580860246,
+            "avg_holding_time": 10.998799564247312
+          }
+        }
+      }
+    },
+    {
+      "days": 30,
+      "results": {
+        "overall": {
+          "initial_balance": 50.0,
+          "final_balance": 28.03800986835306,
+          "total_trades": 339,
+          "winning_trades": 88,
+          "losing_trades": 251,
+          "win_rate": 0.25958702064896755,
+          "total_return_pct": -43.92398026329388,
+          "total_pnl": -21.961990131646967,
+          "max_drawdown_pct": 44.238126053335066,
+          "avg_holding_time": 11.723346959537857
+        },
+        "by_asset": {
+          "ETH": {
+            "trades": 58,
+            "winning_trades": 8,
+            "losing_trades": 50,
+            "win_rate": 0.13793103448275862,
+            "total_pnl": -7.736172327376169,
+            "avg_win": 0.3816038706098941,
+            "avg_loss": -0.21578006584510642,
+            "largest_win": 0.4839229905047245,
+            "largest_loss": -0.29675038370450885,
+            "avg_holding_time": 10.862068965517242
+          },
+          "AVAX": {
+            "trades": 165,
+            "winning_trades": 49,
+            "losing_trades": 116,
+            "win_rate": 0.296969696969697,
+            "total_pnl": -7.3986643308169775,
+            "avg_win": 0.22718998915925323,
+            "avg_loss": -0.15974977413465852,
+            "largest_win": 0.37987490880678176,
+            "largest_loss": -0.23847350630417868,
+            "avg_holding_time": 12.419482541111112
+          },
+          "DOGE": {
+            "trades": 116,
+            "winning_trades": 31,
+            "losing_trades": 85,
+            "win_rate": 0.2672413793103448,
+            "total_pnl": -6.827153473453824,
+            "avg_win": 0.22510357068523873,
+            "avg_loss": -0.16241604899642617,
+            "largest_win": 0.32136308357509913,
+            "largest_loss": -0.24882032504849394,
+            "avg_holding_time": 11.163793103448276
+          }
+        }
+      }
+    }
+  ]
+}

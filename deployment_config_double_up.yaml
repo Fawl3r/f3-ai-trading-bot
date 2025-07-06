@@ -1,0 +1,361 @@
+# Elite Double-Up Deployment Configuration
+# Progressive 3-phase rollout: $50 → $100 in ~30 days
+
+# =============================================================================
+# RISK CONFIGURATION - DOUBLE-UP STRATEGY
+# =============================================================================
+risk_config:
+  # Core risk parameters
+  risk_pct: 0.0075                    # 0.75% risk per trade (3x baseline)
+  risk_reward_ratio: 4.0              # 4:1 R:R (1 ATR stop, 4 ATR target)
+  max_positions: 2                    # Allow 2 concurrent positions
+  
+  # Position sizing
+  min_position_size_usd: 5            # Minimum $5 position for micro accounts
+  max_position_size_pct: 0.10         # Max 10% of account per position
+  
+  # Circuit breakers
+  daily_loss_halt: -3                 # Halt after -3R daily loss (~-2.25%)
+  weekly_drawdown_halt: -8            # Halt after -8R weekly DD (~-6%)
+  monthly_drawdown_halt: -15          # Halt after -15R monthly DD (~-11.25%)
+  
+  # Auto-scaling rules
+  scale_up_threshold: 0.75            # Scale up when account > $75
+  scale_up_amount: 25                 # Add $25 when scaling up
+  profit_lock_threshold: 2.0          # Lock profits after 2x account growth
+
+# =============================================================================
+# DEPLOYMENT PHASES - PROGRESSIVE ROLLOUT
+# =============================================================================
+phases:
+  - name: "phase_1_validation"
+    description: "Initial validation with conservative settings"
+    duration_days: 3
+    risk_pct: 0.0075
+    max_positions: 1
+    target_trades: 30
+    success_criteria:
+      min_expectancy_pct: 0.003        # +0.30% per trade
+      min_profit_factor: 1.30
+      max_drawdown_pct: 0.03           # 3% max DD
+      min_win_rate: 0.35               # 35% win rate
+    
+  - name: "phase_2_scaling"
+    description: "Scale to 2 positions after validation"
+    duration_days: 7
+    risk_pct: 0.0075
+    max_positions: 2
+    target_trades: 70
+    success_criteria:
+      min_expectancy_pct: 0.003
+      min_profit_factor: 1.25
+      max_drawdown_pct: 0.05           # 5% max DD
+      min_win_rate: 0.33
+    
+  - name: "phase_3_production"
+    description: "Full production deployment"
+    duration_days: 30
+    risk_pct: 0.0075
+    max_positions: 2
+    target_trades: 200
+    success_criteria:
+      min_expectancy_pct: 0.0025       # Slightly lower for longer term
+      min_profit_factor: 1.20
+      max_drawdown_pct: 0.08           # 8% max DD
+      min_win_rate: 0.30
+
+# =============================================================================
+# VALIDATION GATES - MUST PASS TO PROCEED
+# =============================================================================
+validation_gates:
+  # Core performance gates
+  expectancy_min: 0.003               # +0.30% per trade minimum
+  profit_factor_min: 1.30             # 1.30 or higher
+  max_drawdown_max: 0.05              # 5% maximum drawdown
+  sharpe_min: 1.0                     # Sharpe ratio >= 1.0
+  min_trades: 100                     # Minimum 100 trades for validation
+  
+  # Additional elite gates
+  win_rate_min: 0.30                  # 30% minimum win rate
+  avg_winner_min: 3.5                 # Average winner >= 3.5R
+  avg_loser_max: -1.1                 # Average loser <= -1.1R
+  consecutive_losses_max: 8           # Max 8 consecutive losses
+  
+  # Risk management gates
+  largest_loss_max: -1.5              # Largest single loss <= -1.5R
+  tail_risk_99_max: -2.0              # 99th percentile loss <= -2.0R
+  
+  # Execution quality gates
+  slippage_max_bps: 5                 # Max 5 bps slippage
+  latency_p95_max_ms: 300             # 95th percentile latency < 300ms
+  fill_rate_min: 0.95                 # 95% fill rate minimum
+
+# =============================================================================
+# COIN SELECTION - ELITE PAIRS FOR DOUBLE-UP
+# =============================================================================
+trading_pairs:
+  primary:
+    - symbol: "SOL"
+      priority: 1
+      min_volume_24h: 100000000        # $100M daily volume
+      max_spread_bps: 3                # 3 bps max spread
+      
+    - symbol: "BTC"
+      priority: 2
+      min_volume_24h: 1000000000       # $1B daily volume
+      max_spread_bps: 2                # 2 bps max spread
+      
+    - symbol: "ETH"
+      priority: 3
+      min_volume_24h: 500000000        # $500M daily volume
+      max_spread_bps: 3                # 3 bps max spread
+  
+  backup:
+    - symbol: "AVAX"
+      priority: 4
+      min_volume_24h: 50000000         # $50M daily volume
+      max_spread_bps: 5                # 5 bps max spread
+      
+    - symbol: "MATIC"
+      priority: 5
+      min_volume_24h: 30000000         # $30M daily volume
+      max_spread_bps: 8                # 8 bps max spread
+
+# =============================================================================
+# SIGNAL CONFIGURATION - ELITE AI ENSEMBLE
+# =============================================================================
+signals:
+  # Model ensemble weights
+  model_weights:
+    lightgbm: 0.30                    # 30% weight
+    catboost: 0.30                    # 30% weight
+    bilstm: 0.25                      # 25% weight
+    transformer: 0.15                 # 15% weight (if available)
+  
+  # Signal thresholds
+  entry_threshold: 0.60               # 60% confidence minimum
+  strong_signal_threshold: 0.75       # 75% for increased size
+  exit_threshold: 0.40                # 40% confidence to exit
+  
+  # Feature requirements
+  required_features:
+    - "rsi_14"
+    - "atr_14"
+    - "volume_ratio"
+    - "obi"                           # Order book imbalance
+    - "bb_position"                   # Bollinger band position
+    - "macd_hist"
+    - "trend_strength"
+  
+  # Additional filters
+  filters:
+    min_atr_percentile: 0.3           # Only trade when ATR > 30th percentile
+    max_spread_atr_ratio: 0.1         # Spread < 10% of ATR
+    min_volume_ratio: 1.2             # Volume > 120% of 20-period average
+
+# =============================================================================
+# EXECUTION CONFIGURATION - HYPERLIQUID OPTIMIZED
+# =============================================================================
+execution:
+  # Order management
+  order_type: "limit"                 # Use limit orders
+  limit_offset_bps: 1                 # 1 bp inside mid for fills
+  max_order_lifetime_ms: 5000         # 5 second max order life
+  
+  # Slippage protection
+  max_slippage_bps: 5                 # Cancel if slippage > 5 bps
+  slippage_buffer_bps: 2              # 2 bp buffer for market moves
+  
+  # Latency protection
+  max_latency_ms: 300                 # Cancel orders if latency > 300ms
+  latency_check_interval_ms: 1000     # Check latency every second
+  
+  # Position management
+  partial_fill_threshold: 0.8         # Accept if 80%+ filled
+  timeout_seconds: 30                 # Order timeout
+  
+  # Stop loss management
+  stop_type: "market"                 # Market stop for fast execution
+  stop_buffer_bps: 2                  # 2 bp buffer for stops
+  
+  # Take profit management
+  tp_type: "limit"                    # Limit order for take profit
+  tp_trail_trigger_r: 2.0             # Start trailing at 2R
+  tp_trail_distance_r: 0.5            # Trail 0.5R behind high
+
+# =============================================================================
+# MONITORING & ALERTS - REAL-TIME OVERSIGHT
+# =============================================================================
+monitoring:
+  # Performance tracking
+  metrics_update_interval_seconds: 60 # Update metrics every minute
+  
+  # Alert thresholds
+  alerts:
+    # Performance alerts
+    - name: "low_expectancy"
+      condition: "rolling_expectancy_20 < 0.001"
+      action: "reduce_risk"
+      severity: "warning"
+    
+    - name: "high_drawdown"
+      condition: "current_drawdown > 0.03"
+      action: "halt_trading"
+      severity: "critical"
+    
+    - name: "consecutive_losses"
+      condition: "consecutive_losses >= 6"
+      action: "review_signals"
+      severity: "warning"
+    
+    # Technical alerts
+    - name: "high_latency"
+      condition: "latency_p95_5min > 250"
+      action: "reduce_positions"
+      severity: "warning"
+    
+    - name: "low_fill_rate"
+      condition: "fill_rate_1h < 0.9"
+      action: "adjust_limits"
+      severity: "warning"
+    
+    # Risk alerts
+    - name: "position_size_breach"
+      condition: "position_size_pct > 0.12"
+      action: "reduce_size"
+      severity: "critical"
+    
+    - name: "daily_loss_limit"
+      condition: "daily_pnl_r <= -2.5"
+      action: "halt_trading"
+      severity: "critical"
+
+# =============================================================================
+# REPORTING & ANALYTICS
+# =============================================================================
+reporting:
+  # Dashboard updates
+  dashboard_refresh_seconds: 30       # Update dashboard every 30 seconds
+  
+  # Daily reports
+  daily_report_time: "09:00"          # 9 AM daily report
+  daily_report_recipients:
+    - "trader@elite.com"
+  
+  # Weekly analysis
+  weekly_analysis_day: "sunday"       # Sunday weekly analysis
+  weekly_deep_dive: true              # Include detailed analysis
+  
+  # Monthly review
+  monthly_review_day: 1               # 1st of month
+  monthly_optimization: true          # Run parameter optimization
+  
+  # Key metrics to track
+  key_metrics:
+    - "total_pnl_r"
+    - "expectancy_pct"
+    - "profit_factor"
+    - "max_drawdown"
+    - "sharpe_ratio"
+    - "win_rate"
+    - "avg_winner_r"
+    - "avg_loser_r"
+    - "trades_per_day"
+    - "account_balance"
+    - "roi_monthly"
+
+# =============================================================================
+# EMERGENCY PROCEDURES
+# =============================================================================
+emergency:
+  # Kill switches
+  kill_switches:
+    - name: "manual_kill"
+      trigger: "manual"
+      action: "close_all_positions"
+    
+    - name: "drawdown_kill"
+      trigger: "drawdown > 0.10"       # 10% drawdown
+      action: "close_all_halt_trading"
+    
+    - name: "system_error_kill"
+      trigger: "system_error"
+      action: "close_all_positions"
+    
+    - name: "latency_kill"
+      trigger: "latency_p95 > 1000"    # 1 second latency
+      action: "close_all_positions"
+  
+  # Recovery procedures
+  recovery:
+    auto_restart_after_seconds: 300   # 5 minute cooldown
+    max_auto_restarts_per_day: 3      # Max 3 auto restarts
+    require_manual_approval: true     # Require manual approval after 3 restarts
+    
+    # Gradual restart
+    restart_phases:
+      - risk_pct: 0.0025              # Start with 0.25% risk
+        duration_minutes: 60          # For 1 hour
+      - risk_pct: 0.005               # Then 0.5% risk
+        duration_minutes: 120         # For 2 hours
+      - risk_pct: 0.0075              # Finally back to 0.75%
+
+# =============================================================================
+# ENVIRONMENT SETTINGS
+# =============================================================================
+environment:
+  # Hyperliquid settings
+  hyperliquid:
+    mainnet: true                     # Use mainnet (not testnet)
+    api_url: "https://api.hyperliquid.xyz"
+    ws_url: "wss://api.hyperliquid.xyz/ws"
+    
+  # Logging
+  logging:
+    level: "INFO"
+    file: "elite_double_up.log"
+    max_size_mb: 100
+    backup_count: 10
+    
+  # Database
+  database:
+    type: "sqlite"
+    path: "elite_double_up.db"
+    backup_interval_hours: 6
+    
+  # API keys (load from environment)
+  api_keys:
+    hyperliquid_private_key: "${HYPERLIQUID_PRIVATE_KEY}"
+    telegram_bot_token: "${TELEGRAM_BOT_TOKEN}"
+    discord_webhook: "${DISCORD_WEBHOOK}"
+
+# =============================================================================
+# SUCCESS TARGETS - DOUBLE-UP GOALS
+# =============================================================================
+success_targets:
+  # Primary goal
+  target_roi_30_days: 1.0             # 100% return in 30 days ($50 → $100)
+  
+  # Intermediate milestones
+  milestones:
+    - day: 7
+      target_balance: 62.5            # $62.50 (25% growth)
+    - day: 14
+      target_balance: 75.0            # $75.00 (50% growth)
+    - day: 21
+      target_balance: 87.5            # $87.50 (75% growth)
+    - day: 30
+      target_balance: 100.0           # $100.00 (100% growth)
+  
+  # Risk limits
+  max_acceptable_drawdown: 0.12       # 12% max drawdown
+  max_consecutive_losing_days: 5      # Max 5 losing days in a row
+  
+  # Performance floors
+  min_monthly_roi: 0.8                # 80% minimum monthly return
+  min_weekly_roi: 0.15                # 15% minimum weekly return
+  
+  # Elite benchmarks
+  target_sharpe_ratio: 3.0            # Target Sharpe of 3.0
+  target_profit_factor: 2.5           # Target PF of 2.5
+  target_win_rate: 0.38               # Target 38% win rate 

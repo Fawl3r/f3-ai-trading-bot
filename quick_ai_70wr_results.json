@@ -1,0 +1,45 @@
+{
+  "test_date": "2025-07-05T15:24:52.281273",
+  "overall_win_rate": 1.0,
+  "results": [
+    {
+      "config": "Quick 7-Day",
+      "results": {
+        "total_trades": 0,
+        "winning_trades": 0,
+        "win_rate": 0,
+        "training_results": {
+          "rf_optimized": 0.5645756457564576,
+          "gb_optimized": 0.5645756457564576
+        }
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": "Quick 14-Day",
+      "results": {
+        "total_trades": 0,
+        "winning_trades": 0,
+        "win_rate": 0,
+        "training_results": {
+          "rf_optimized": 0.5443037974683544,
+          "gb_optimized": 0.5316455696202531
+        }
+      },
+      "status": "\u274c Below Target"
+    },
+    {
+      "config": "Quick 21-Day",
+      "results": {
+        "total_trades": 1,
+        "winning_trades": 1,
+        "win_rate": 1.0,
+        "training_results": {
+          "rf_optimized": 0.5532934131736527,
+          "gb_optimized": 0.5580838323353293
+        }
+      },
+      "status": "\ud83c\udfaf TARGET ACHIEVED!"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "total_tests": 30,
+  "profitable_tests": 11,
+  "avg_sharpe": 0.6771333707325687,
+  "avg_profit_factor": 111.72616539914637,
+  "avg_hit_rate": 0.5282731976396613,
+  "avg_max_dd": 0.0,
+  "best_sharpe": 26.271517017502024,
+  "best_profit_factor": 471.95691576005873,
+  "worst_max_dd": "0"
+}

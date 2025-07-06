@@ -1,0 +1,54 @@
+{
+  "test_date": "2025-07-05T15:43:27.995149",
+  "overall_win_rate": 0.4405912450255827,
+  "total_trades": 5277,
+  "total_pnl": 15.973294370729455,
+  "conclusion": "DEVELOPMENT",
+  "results": [
+    {
+      "config": "Optimized 21-Day",
+      "results": {
+        "total_trades": 1492,
+        "winning_trades": 670,
+        "win_rate": 0.44906166219839144,
+        "total_pnl": 5.178516341725919,
+        "avg_pnl": 0.003470855456920857,
+        "training_results": {
+          "rf_optimized": 0.7215189873417721,
+          "gb_optimized": 0.6708860759493671
+        }
+      },
+      "status": "\u274c Needs Work"
+    },
+    {
+      "config": "Optimized 30-Day",
+      "results": {
+        "total_trades": 2114,
+        "winning_trades": 870,
+        "win_rate": 0.41154210028382215,
+        "total_pnl": 4.086030975064409,
+        "avg_pnl": 0.0019328434129916787,
+        "training_results": {
+          "rf_optimized": 0.7096774193548387,
+          "gb_optimized": 0.6129032258064516
+        }
+      },
+      "status": "\u274c Needs Work"
+    },
+    {
+      "config": "Optimized 45-Day",
+      "results": {
+        "total_trades": 1671,
+        "winning_trades": 785,
+        "win_rate": 0.4697785757031718,
+        "total_pnl": 6.708747053939128,
+        "avg_pnl": 0.004014809727073087,
+        "training_results": {
+          "rf_optimized": 0.6074766355140186,
+          "gb_optimized": 0.6635514018691588
+        }
+      },
+      "status": "\u274c Needs Work"
+    }
+  ]
+}

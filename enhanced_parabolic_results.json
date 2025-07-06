@@ -1,0 +1,61 @@
+{
+  "metrics": {
+    "initial_balance": 50.0,
+    "final_balance": 46.554123111730284,
+    "total_return": -6.891753776539431,
+    "monthly_return": -1.2030008372460932,
+    "total_trades": 147,
+    "winning_trades": 29,
+    "losing_trades": 118,
+    "win_rate": 19.727891156462583,
+    "avg_win": 0.6688515084186719,
+    "avg_loss": -0.19358110705433199,
+    "expectancy": -0.023441339375984277,
+    "expectancy_pct": -0.046882678751968554,
+    "profit_factor": 0.8491467119125224,
+    "avg_r_multiple": -0.23186393537343786,
+    "max_drawdown": 12.464444440872615,
+    "sharpe_ratio": -0.8128606681093766,
+    "volatility": 16.371383336053476,
+    "days_trading": 177,
+    "exit_reasons": {
+      "stop_loss": 118,
+      "take_profit": 27,
+      "timeout": 2,
+      "end_of_data": 0
+    }
+  },
+  "trade_analysis": {
+    "burst_trades": {
+      "count": 135,
+      "win_rate": 19.25925925925926,
+      "total_pnl": -3.93411528122996,
+      "avg_pnl": -0.029141594675777482,
+      "profit_factor": 0.8122489652552118,
+      "avg_r_multiple": -0.2505115398004862,
+      "avg_signal_strength": 0.7111111111111111
+    },
+    "fade_trades": {
+      "count": 12,
+      "win_rate": 25.0,
+      "total_pnl": 0.48823839296027377,
+      "avg_pnl": 0.04068653274668948,
+      "profit_factor": 1.2585081986400188,
+      "avg_r_multiple": -0.022078385569144193,
+      "avg_signal_strength": 0.7000000000000001
+    },
+    "high_strength": {
+      "count": 106,
+      "win_rate": 20.754716981132077,
+      "avg_r_multiple": -0.19111204306305735
+    },
+    "low_strength": {
+      "count": 41,
+      "win_rate": 17.073170731707318,
+      "avg_r_multiple": -0.33722248622466533
+    }
+  },
+  "trade_count": 147,
+  "signal_count": 156,
+  "data_points": 4320
+}

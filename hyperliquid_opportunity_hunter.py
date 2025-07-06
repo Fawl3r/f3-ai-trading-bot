@@ -211,95 +211,99 @@ class HyperliquidOpportunityHunter:
         return rsi
 
     async def detect_opportunity(self, symbol: str) -> Optional[TradingSignal]:
-        """AI-powered opportunity detection"""
+        """AI-powered opportunity detection - SIMPLIFIED AND WORKING"""
         try:
-            # Get current market data
-            market_data = await self.get_market_data(symbol)
-            if not market_data:
+            # Get market data
+            all_mids = self.info.all_mids()
+            if symbol not in all_mids:
                 return None
             
-            # Get historical candlestick data for analysis
+            current_price = float(all_mids[symbol])
+            
+            # Get simple candles data (1 hour lookback)
             end_time = int(time.time() * 1000)
-            start_time = end_time - (4 * 60 * 60 * 1000)  # 4 hours of data
+            start_time = end_time - (60 * 60 * 1000)  # 1 hour
             
-            candles = self.info.candles_snapshot(symbol, "1m", start_time, end_time)
-            
-            if not candles or len(candles) < 50:
-                logger.warning(f"Insufficient historical data for {symbol}")
+            candles = self.info.candles_snapshot(symbol, "5m", start_time, end_time)
+            if not candles or len(candles) < 6:
+                logger.warning(f"Insufficient candles data for {symbol}: {len(candles) if candles else 0}")
                 return None
             
-            # Extract price data
-            prices = [float(candle['c']) for candle in candles]
-            volumes = [float(candle['v']) for candle in candles]
-            highs = [float(candle['h']) for candle in candles]
-            lows = [float(candle['l']) for candle in candles]
+            # Extract closing prices and volumes
+            prices = [float(c['c']) for c in candles]
+            volumes = [float(c['v']) for c in candles]
             
-            current_price = prices[-1]
-            current_volume = volumes[-1]
+            # Simple momentum calculation
+            price_5m_ago = prices[-2] if len(prices) >= 2 else current_price
+            price_10m_ago = prices[-3] if len(prices) >= 3 else current_price
+            price_15m_ago = prices[-4] if len(prices) >= 4 else current_price
             
-            # Calculate technical indicators
-            rsi = self.calculate_rsi(prices)
+            # Calculate momentum over different timeframes
+            momentum_5m = (current_price - price_5m_ago) / price_5m_ago * 100
+            momentum_10m = (current_price - price_10m_ago) / price_10m_ago * 100
+            momentum_15m = (current_price - price_15m_ago) / price_15m_ago * 100
             
             # Volume analysis
-            avg_volume = np.mean(volumes[-20:])  # 20-period average
-            volume_spike = current_volume / avg_volume if avg_volume > 0 else 1.0
+            current_volume = volumes[-1]
+            avg_volume = np.mean(volumes[:-1]) if len(volumes) > 1 else current_volume
+            volume_ratio = current_volume / avg_volume if avg_volume > 0 else 1.0
             
-            # Price momentum analysis
-            price_5m_ago = prices[-5] if len(prices) >= 5 else current_price
-            price_momentum = (current_price - price_5m_ago) / price_5m_ago * 100
-            
-            # Volatility analysis
-            price_range = (max(highs[-10:]) - min(lows[-10:])) / current_price * 100
-            
-            # AI Detection Logic
-            confidence = 0.0
-            action = None
-            reason = ""
+            # Price volatility (range of recent prices)
+            price_range = (max(prices[-6:]) - min(prices[-6:])) / current_price * 100
             
             # BULLISH SIGNALS
-            if (volume_spike >= self.min_volume_spike and 
-                price_momentum >= self.min_price_momentum and 
-                price_momentum <= self.max_price_momentum and
-                rsi < self.rsi_overbought):
+            if (momentum_5m > 0.5 and momentum_10m > 1.0 and 
+                volume_ratio > 1.5 and price_range > 0.3):
                 
                 confidence = min(90.0, 
-                    30 + (volume_spike * 10) + 
-                    (price_momentum * 5) + 
-                    ((70 - rsi) * 0.5)
+                    50 + (momentum_5m * 3) + (momentum_10m * 2) + 
+                    (volume_ratio * 5) + (price_range * 2)
                 )
-                action = "BUY"
-                reason = f"Volume spike {volume_spike:.1f}x, momentum {price_momentum:.2f}%, RSI {rsi:.1f}"
+                
+                if confidence >= 75.0:
+                    return TradingSignal(
+                        symbol=symbol,
+                        action="BUY",
+                        confidence=confidence,
+                        target_price=current_price * 1.06,  # 6% target
+                        stop_loss=current_price * 0.97,    # 3% stop
+                        reason=f"5m: +{momentum_5m:.2f}%, 10m: +{momentum_10m:.2f}%, Vol: {volume_ratio:.1f}x",
+                        timestamp=datetime.now()
+                    )
             
-            # BEARISH SIGNALS (for shorting)
-            elif (volume_spike >= self.min_volume_spike and 
-                  price_momentum <= -self.min_price_momentum and 
-                  price_momentum >= -self.max_price_momentum and
-                  rsi > self.rsi_oversold):
+            # BEARISH SIGNALS  
+            elif (momentum_5m < -0.5 and momentum_10m < -1.0 and 
+                  volume_ratio > 1.5 and price_range > 0.3):
                 
                 confidence = min(90.0, 
-                    30 + (volume_spike * 10) + 
-                    (abs(price_momentum) * 5) + 
-                    ((rsi - 30) * 0.5)
+                    50 + (abs(momentum_5m) * 3) + (abs(momentum_10m) * 2) + 
+                    (volume_ratio * 5) + (price_range * 2)
                 )
-                action = "SELL"
-                reason = f"Volume spike {volume_spike:.1f}x, momentum {price_momentum:.2f}%, RSI {rsi:.1f}"
-            
-            # Only return signal if confidence is high enough
-            if confidence >= 75.0 and action:
-                target_price = current_price * (1.06 if action == "BUY" else 0.94)
-                stop_loss = current_price * (0.97 if action == "BUY" else 1.03)
                 
-                return TradingSignal(
-                    symbol=symbol,
-                    action=action,
-                    confidence=confidence,
-                    target_price=target_price,
-                    stop_loss=stop_loss,
-                    reason=reason,
-                    timestamp=datetime.now()
-                )
+                if confidence >= 75.0:
+                    return TradingSignal(
+                        symbol=symbol,
+                        action="SELL",
+                        confidence=confidence,
+                        target_price=current_price * 0.94,  # 6% target
+                        stop_loss=current_price * 1.03,    # 3% stop
+                        reason=f"5m: {momentum_5m:.2f}%, 10m: {momentum_10m:.2f}%, Vol: {volume_ratio:.1f}x",
+                        timestamp=datetime.now()
+                    )
             
-            return None
+            # Return weak signal for logging (ALWAYS return something for logging)
+            max_momentum = max(abs(momentum_5m), abs(momentum_10m))
+            confidence = min(74.0, 30 + (max_momentum * 5) + (volume_ratio * 3))
+            
+            return TradingSignal(
+                symbol=symbol,
+                action="HOLD",
+                confidence=confidence,
+                target_price=current_price,
+                stop_loss=current_price,
+                reason=f"Weak momentum: {momentum_5m:.2f}%/5m, {momentum_10m:.2f}%/10m",
+                timestamp=datetime.now()
+            )
             
         except Exception as e:
             logger.error(f"Error detecting opportunity for {symbol}: {e}")
@@ -534,49 +538,82 @@ class HyperliquidOpportunityHunter:
                 # Check existing positions
                 await self.check_positions()
                 
-                # Scan for new opportunities
-                for symbol in self.trading_pairs:
+                # Scan for new opportunities with detailed logging
+                logger.info(f"🔍 SCANNING {len(self.trading_pairs)} CRYPTOS FOR OPPORTUNITIES...")
+                scan_start_time = time.time()
+                
+                for i, symbol in enumerate(self.trading_pairs, 1):
                     try:
+                        logger.info(f"📊 [{i}/{len(self.trading_pairs)}] Analyzing {symbol}...")
+                        
                         # Skip if we already have a position in this symbol
                         if symbol in self.active_positions:
+                            logger.info(f"   ⏭️  {symbol}: Skipped (position already open)")
                             continue
                         
                         # Rate limiting - don't trade same symbol too frequently
                         if symbol in self.last_trade_time:
                             time_since_last = time.time() - self.last_trade_time[symbol]
                             if time_since_last < 300:  # 5 minutes minimum between trades
+                                wait_time = 300 - time_since_last
+                                logger.info(f"   ⏭️  {symbol}: Skipped (cooldown: {wait_time:.0f}s remaining)")
                                 continue
+                        
+                        # Get current market data
+                        market_data = await self.get_market_data(symbol)
+                        if market_data:
+                            logger.info(f"   💰 {symbol}: ${market_data.price:,.2f} ({market_data.price_change_24h:+.2f}% 24h)")
+                            logger.info(f"   🔍 Checking for 75%+ confidence signals...")
                         
                         # Detect opportunity
                         signal = await self.detect_opportunity(symbol)
                         
                         if signal and signal.confidence >= 75.0:
-                            logger.info(f"OPPORTUNITY DETECTED: {signal.symbol} - {signal.action}")
-                            logger.info(f"Confidence: {signal.confidence:.1f}%")
-                            logger.info(f"Reason: {signal.reason}")
+                            logger.info(f"🚨 OPPORTUNITY DETECTED: {signal.symbol} - {signal.action}")
+                            logger.info(f"   📈 Confidence: {signal.confidence:.1f}%")
+                            logger.info(f"   💡 Reason: {signal.reason}")
+                            logger.info(f"   🎯 Target: ${signal.target_price:.2f}")
+                            logger.info(f"   🛡️  Stop Loss: ${signal.stop_loss:.2f}")
                             
                             # Place order
+                            logger.info(f"   📤 Placing {signal.action} order for {signal.symbol}...")
                             success = await self.place_order(signal)
                             if success:
-                                logger.info(f"Successfully placed order for {signal.symbol}")
+                                logger.info(f"   ✅ Successfully placed order for {signal.symbol}")
+                            else:
+                                logger.info(f"   ❌ Failed to place order for {signal.symbol}")
                             
                             # Slight delay after placing order
                             await asyncio.sleep(2)
+                        else:
+                            confidence = signal.confidence if signal else 0
+                            logger.info(f"   ❌ {symbol}: No signal (confidence: {confidence:.1f}% < 75%)")
                         
                         # Small delay between symbol scans
                         await asyncio.sleep(1)
                         
                     except Exception as e:
-                        logger.error(f"Error processing {symbol}: {e}")
+                        logger.error(f"   ❌ Error processing {symbol}: {e}")
                         continue
                 
-                # Log status
-                logger.info(f"Scan complete. Balance: ${self.balance:.2f}, "
-                          f"Positions: {len(self.active_positions)}, "
-                          f"Daily trades: {self.daily_trades}/{self.max_daily_trades}")
+                scan_time = time.time() - scan_start_time
                 
-                # Wait before next scan
-                await asyncio.sleep(30)  # 30-second scan interval
+                # Enhanced status log
+                logger.info(f"✅ SCAN COMPLETE - Scanned {len(self.trading_pairs)} cryptos in {scan_time:.1f}s")
+                logger.info(f"💰 Balance: ${self.balance:.2f} | 📊 Positions: {len(self.active_positions)} | 📈 Daily trades: {self.daily_trades}/{self.max_daily_trades}")
+                
+                # Countdown to next scan
+                wait_time = 30  # 30-second scan interval
+                logger.info(f"⏳ WAITING {wait_time}s BEFORE NEXT SCAN...")
+                
+                # Show countdown timer
+                for remaining in range(wait_time, 0, -5):
+                    if remaining <= 10:
+                        logger.info(f"   ⏰ Next scan in {remaining}s...")
+                        await asyncio.sleep(1)
+                    else:
+                        logger.info(f"   ⏰ Next scan in {remaining}s...")
+                        await asyncio.sleep(5)
                 
             except KeyboardInterrupt:
                 logger.info("Trading loop interrupted by user")

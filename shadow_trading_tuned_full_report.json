@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-07-06T18:01:30.769223",
+  "version": "tuned_full_v1.1",
+  "metrics": {
+    "total_trades": 200,
+    "real_trades": 146,
+    "winning_trades": 51,
+    "losing_trades": 95,
+    "win_rate": 34.93150684931507,
+    "total_pnl": 37.12025255833287,
+    "total_return": 74.25257782626022,
+    "profit_factor": 2.0548587662933078,
+    "max_drawdown": 4.363137232773515,
+    "balance": 87.12628891313011,
+    "avg_risk_used": 0.5392918259251022,
+    "pause_trades": 54
+  },
+  "improvements": {
+    "drawdown_reduction": "3.67pp",
+    "risk_reduction": "0.21pp",
+    "edge_preservation": "PF 2.05 vs 2.31"
+  }
+}

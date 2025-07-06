@@ -1,0 +1,38 @@
+{
+  "metrics": {
+    "initial_balance": 50.0,
+    "final_balance": 56.62179065021067,
+    "total_return": 13.24358130042134,
+    "monthly_return": 4.714068879656219,
+    "total_trades": 7,
+    "winning_trades": 5,
+    "losing_trades": 2,
+    "win_rate": 71.42857142857143,
+    "avg_win": 1.5091667561193736,
+    "avg_loss": -0.46202156519310045,
+    "expectancy": 0.9459700928872382,
+    "expectancy_pct": 1.8919401857744762,
+    "profit_factor": 8.166105598818868,
+    "avg_r_multiple": 2.4091775901304224,
+    "max_drawdown": 0.8942873978800078,
+    "days_trading": 81
+  },
+  "trade_analysis": {
+    "burst_trades": {
+      "count": 1,
+      "win_rate": 100.0,
+      "total_pnl": 1.4553023647453878,
+      "profit_factor": Infinity,
+      "avg_r_multiple": 3.8038991699234304
+    },
+    "fade_trades": {
+      "count": 6,
+      "win_rate": 66.66666666666666,
+      "total_pnl": 5.166488285465279,
+      "profit_factor": 6.591176553962327,
+      "avg_r_multiple": 2.1767239934982543
+    }
+  },
+  "trade_count": 7,
+  "signal_count": 7
+}

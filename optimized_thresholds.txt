@@ -1,0 +1,4 @@
+# Optimized Signal Detection Thresholds
+# Generated: 2025-07-03 13:44:05.096020
+# Data: 5 symbols, 2000+ candles each
+

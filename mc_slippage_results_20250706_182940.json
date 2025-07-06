@@ -1,0 +1,40 @@
+{
+  "test_parameters": {
+    "risk_pct": 0.005,
+    "initial_balance": 10000.0,
+    "timestamp": "2025-07-06T18:29:40.872612"
+  },
+  "analysis": {
+    "total_runs": 50,
+    "profit_factor": {
+      "mean": 0.5665876481289878,
+      "median": 0.5612856719390338,
+      "5th_percentile": 0.41452403522164866,
+      "95th_percentile": 0.7561733092955887
+    },
+    "max_drawdown": {
+      "mean": 16.031307886162505,
+      "median": 16.045340881113532,
+      "95th_percentile": 22.936566223311168,
+      "99th_percentile": 23.784805375645334
+    },
+    "total_return": {
+      "mean": -14.863374036601684,
+      "median": -14.8234385088437,
+      "5th_percentile": -22.00136803228305,
+      "95th_percentile": -7.263616980431832
+    },
+    "win_rate": {
+      "mean": 0.3886,
+      "std": 0.04069447136897099
+    },
+    "slippage_impact": {
+      "avg_slippage_bps": 21.064642443558068,
+      "slippage_cost_pct": 0.21064642443558065
+    },
+    "latency_impact": {
+      "avg_latency_ms": 136.7542289688051,
+      "p95_latency_ms": 143.81341293987725
+    },
+    "pass_criteria": {
+      "pf_5th_above_1_7": 

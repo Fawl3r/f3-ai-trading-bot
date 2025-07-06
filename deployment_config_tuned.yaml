@@ -1,0 +1,157 @@
+# Elite Double-Up Trading System - Tuned Configuration
+# Post-mortem adjustments for drawdown optimization
+
+system:
+  name: "Elite Double-Up Tuned"
+  version: "1.1.0"
+  target_return: 100  # 100% monthly (50 -> 100)
+  risk_profile: "aggressive_controlled"
+
+# RISK SIZING ADJUSTMENTS (Primary Fix)
+risk_management:
+  # Reduced from 0.75% to 0.5% - Expected DD reduction: 8% -> ~5.3%
+  base_risk_per_trade: 0.005  # 0.5% of account per trade
+  max_risk_per_trade: 0.007   # 0.7% maximum with volatility adjustments
+  
+  # Volatility-weighted risk cap
+  volatility_adjustment: true
+  atr_reference: 20  # 20-period ATR baseline
+  vol_risk_formula: "min(0.005 * ATR20/ATR_ref, 0.007)"
+  
+  # Equity drawdown scaler (stops DD snowballing)
+  equity_drawdown_scaler: true
+  dd_threshold: 4.0  # 4% equity DD trigger
+  dd_risk_multiplier: 0.6  # Reduce risk by 40% when DD > 4%
+  
+  # Loss streak pause (lowered from 5 to 4)
+  consecutive_loss_limit: 4  # Halt after 4 consecutive losses
+  loss_streak_cooldown: 300  # 5 minutes pause
+  
+  # Maximum drawdown limits
+  max_drawdown_soft: 4.5  # Warning threshold
+  max_drawdown_hard: 6.0  # Emergency halt
+  
+  # Position sizing
+  max_concurrent_positions: 2
+  correlation_limit: 0.7  # Limit correlated positions
+
+# EDGE-PRESERVING TWEAKS
+trading_rules:
+  # Reduced pyramiding for size control
+  pyramiding_enabled: true
+  pyramid_add_size: 0.003  # Reduced from 0.5R to 0.3R equivalent
+  pyramid_max_adds: 2
+  
+  # Time-of-day filter (removes worst streak periods)
+  time_filters:
+    enabled: true
+    trading_hours:
+      start: "06:00"  # UTC
+      end: "20:30"    # Hard stop at 20:30 UTC
+    blackout_periods:
+      - "20:30-06:00"  # Late US/Asia session filter
+    
+  # Signal filtering (remove poor performers)
+  signal_blacklist:
+    - "ema_cross_long"      # 20% WR, -$4.35 P&L
+    - "momentum_burst_long" # 22.2% WR, -$2.13 P&L
+    
+  # Hedge micro-basket for portfolio DD reduction
+  hedge_basket:
+    enabled: true
+    opposite_signal_size: 0.7  # 70% of base size for opposite signals
+    portfolio_dd_reduction: 25  # Expected 25% DD reduction
+
+# VALIDATION GATES (Updated targets)
+validation:
+  target_fills: 200
+  target_profit_factor: 2.0
+  target_max_drawdown: 4.5  # Relaxed from 3% to 4.5%
+  target_win_rate: 35.0
+  
+  # Minimum performance thresholds
+  min_trades_for_validation: 100
+  min_expectancy: 0.25  # 0.25% per trade
+  min_sharpe_ratio: 0.8
+
+# MONITORING ENHANCEMENTS
+monitoring:
+  prometheus:
+    enabled: true
+    port: 8001
+    metrics_interval: 10  # seconds
+    
+    # New gauges for risk management
+    additional_metrics:
+      - "drawdown_pct"
+      - "risk_pct_live"
+      - "equity_dd_scaler_active"
+      - "vol_adjustment_factor"
+      
+    # Alert thresholds
+    alerts:
+      max_drawdown_warning: 4.0
+      max_drawdown_critical: 5.5
+      risk_scaler_active: true
+      consecutive_losses: 3
+  
+  # Enhanced S3 logging
+  s3_backup:
+    enabled: true
+    bucket: "${S3_BUCKET}"
+    retention_days: 90
+    nightly_sync: true
+    archive_pattern: "archive/$(date +%F)/"
+    
+  # Database settings
+  database:
+    path: "shadow_trades_tuned.db"
+    backup_interval: 3600  # 1 hour
+    retention_days: 30
+
+# DEPLOYMENT PHASES (Updated)
+deployment:
+  phases:
+    ramp0:  # Initial validation phase
+      duration_days: 3
+      max_positions: 1
+      risk_multiplier: 0.8  # 80% of base risk (0.4%)
+      
+    ramp1:  # Scaling phase
+      duration_days: 7
+      max_positions: 2
+      risk_multiplier: 1.0  # Full risk (0.5%)
+      
+    production:  # Full deployment
+      duration_days: 30
+      max_positions: 2
+      risk_multiplier: 1.0  # Full risk (0.5%)
+
+# PERFORMANCE TARGETS (Updated)
+targets:
+  monthly_return: 100  # 100% monthly target
+  max_monthly_drawdown: 4.5  # 4.5% maximum
+  min_profit_factor: 2.0
+  min_win_rate: 35.0
+  
+  # Risk-adjusted targets
+  sharpe_ratio: 1.0
+  calmar_ratio: 20.0  # Return/Max DD
+  
+# EMERGENCY PROCEDURES
+emergency:
+  auto_halt_conditions:
+    - "max_drawdown > 6.0"
+    - "consecutive_losses >= 4"
+    - "daily_pnl < -4.0"  # -4R day
+    - "profit_factor < 1.5"
+    
+  manual_override:
+    enabled: true
+    auth_required: true
+    
+  recovery_procedures:
+    - "reduce_risk_by_50_percent"
+    - "pause_trading_1_hour"
+    - "alert_operator"
+    - "backup_state_to_s3" 

@@ -1,0 +1,54 @@
+{
+  "test_date": "2025-07-05T15:33:17.187656",
+  "overall_win_rate": 0.48148148148148145,
+  "total_trades": 1539,
+  "total_pnl": 9.078728302495744,
+  "conclusion": "DEVELOPMENT",
+  "results": [
+    {
+      "config": "Practical 14-Day",
+      "results": {
+        "total_trades": 507,
+        "winning_trades": 263,
+        "win_rate": 0.5187376725838264,
+        "total_pnl": 3.486706013641617,
+        "avg_pnl": 0.0068771321768079235,
+        "training_results": {
+          "rf_main": 0.40421052631578946,
+          "gb_main": 0.38105263157894737
+        }
+      },
+      "status": "\u274c Needs Work"
+    },
+    {
+      "config": "Practical 21-Day",
+      "results": {
+        "total_trades": 572,
+        "winning_trades": 279,
+        "win_rate": 0.48776223776223776,
+        "total_pnl": 3.532427133886806,
+        "avg_pnl": 0.006175571912389521,
+        "training_results": {
+          "rf_main": 0.3756983240223464,
+          "gb_main": 0.39385474860335196
+        }
+      },
+      "status": "\u274c Needs Work"
+    },
+    {
+      "config": "Practical 28-Day",
+      "results": {
+        "total_trades": 460,
+        "winning_trades": 199,
+        "win_rate": 0.4326086956521739,
+        "total_pnl": 2.059595154967322,
+        "avg_pnl": 0.004477380771668091,
+        "training_results": {
+          "rf_main": 0.40083507306889354,
+          "gb_main": 0.36430062630480164
+        }
+      },
+      "status": "\u274c Needs Work"
+    }
+  ]
+}

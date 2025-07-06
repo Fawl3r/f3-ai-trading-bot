@@ -1,0 +1,78 @@
+{
+  "metrics": {
+    "initial_balance": 50.0,
+    "final_balance": 52.022211837220546,
+    "total_return": 4.0444236744410915,
+    "total_pnl": 2.022211837220542,
+    "total_trades": 4,
+    "winning_trades": 2,
+    "losing_trades": 2,
+    "win_rate": 50.0,
+    "avg_win": 1.3387131803917343,
+    "avg_loss": -0.32760726178146315,
+    "expectancy": 1.011105918610271,
+    "profit_factor": 4.086335489366378,
+    "avg_r_multiple": 1.238034190216474,
+    "max_drawdown": 1.2804328775237046,
+    "sharpe_ratio": 9.536516042568136
+  },
+  "trades": [
+    {
+      "entry_time": "2025-04-27 10:26:15.764847",
+      "exit_time": "2025-04-28 04:26:15.764847",
+      "side": "long",
+      "entry_price": 101.04227901283471,
+      "exit_price": 112.49010469082369,
+      "size": 0.10231892774990799,
+      "pnl": 1.171329248439695,
+      "r_multiple": 3.999999999999999,
+      "exit_reason": "Take Profit",
+      "signal_type": "burst_long",
+      "signal_strength": 1.561772331252927,
+      "entry_reason": "Parabolic Burst Long"
+    },
+    {
+      "entry_time": "2025-05-13 17:26:15.768856",
+      "exit_time": "2025-05-13 20:26:15.768856",
+      "side": "short",
+      "entry_price": 78.32763327896308,
+      "exit_price": 81.34144426876273,
+      "size": 0.11139021950735233,
+      "pnl": -0.33570906770745396,
+      "r_multiple": -0.9999999999999983,
+      "exit_reason": "Stop Loss",
+      "signal_type": "burst_short",
+      "signal_strength": 1.7494643850403966,
+      "entry_reason": "Parabolic Burst Short"
+    },
+    {
+      "entry_time": "2025-06-04 18:26:15.773369",
+      "exit_time": "2025-06-05 09:26:15.773369",
+      "side": "long",
+      "entry_price": 189.65077162333915,
+      "exit_price": 184.69940788798164,
+      "size": 0.06452877892486367,
+      "pnl": -0.3195054558554724,
+      "r_multiple": -0.999999999999999,
+      "exit_reason": "Stop Loss",
+      "signal_type": "burst_long",
+      "signal_strength": 1.6760187953226908,
+      "entry_reason": "Parabolic Burst Long"
+    },
+    {
+      "entry_time": "2025-06-15 17:26:15.774630",
+      "exit_time": "2025-06-16 17:26:15.775627",
+      "side": "long",
+      "entry_price": 233.98169730891388,
+      "exit_price": 257.5301613907684,
+      "size": 0.06395733951516228,
+      "pnl": 1.5060971123437736,
+      "r_multiple": 2.9521367608658937,
+      "exit_reason": "Time Exit",
+      "signal_type": "burst_long",
+      "signal_strength": 2.693117453403909,
+      "entry_reason": "Parabolic Burst Long"
+    }
+  ],
+  "total_signals": 4
+}

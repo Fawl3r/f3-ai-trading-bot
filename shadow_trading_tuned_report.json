@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-07-06T17:59:23.829800",
+  "version": "tuned_v1.1",
+  "metrics": {
+    "total_trades": 22,
+    "winning_trades": 9,
+    "losing_trades": 13,
+    "win_rate": 40.909090909090914,
+    "avg_win": 1.2290908723270015,
+    "avg_loss": -0.2936200509695169,
+    "total_pnl": 7.2447571883392925,
+    "total_return": 14.489514376678613,
+    "profit_factor": 2.897993725726499,
+    "max_drawdown": 1.9529767168656946,
+    "avg_r_multiple": 1.0678673144000865,
+    "balance": 57.24475718833931,
+    "avg_risk_used": 0.5474641363088595,
+    "consecutive_losses": 4,
+    "equity_dd_scaler_triggered": false
+  },
+  "validation": {
+    "target_fills": 200,
+    "target_profit_factor": 2.0,
+    "target_max_drawdown": 4.5,
+    "fills_pass": false,
+    "pf_pass": true,
+    "dd_pass": true,
+    "gates_passed": 2,
+    "overall_pass": false
+  },
+  "improvements": {
+    "risk_reduction": "0.5% (from 0.75%)",
+    "dd_improvement": "1.95% (from 8.03%)",
+    "signal_filtering": "Removed 2 poor signals",
+    "risk_management": "Enhanced with equity DD scaler"
+  }
+}
