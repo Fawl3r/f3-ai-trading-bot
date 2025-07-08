@@ -1,0 +1,7 @@
+{
+  "min_volume_24h": 50000000,
+  "min_volatility": 0.02,
+  "min_liquidity_depth": 25000,
+  "max_spread_bps": 8,
+  "min_market_cap": 500000000
+}

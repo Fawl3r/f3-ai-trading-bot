@@ -1,0 +1,22 @@
+{
+  "dd_challenger_pct": {
+    "warn_threshold": 2.5,
+    "halt_threshold": 4.0,
+    "description": "Tightened DD thresholds for RL policies"
+  },
+  "pyramid_units_live": {
+    "max_units": 3,
+    "alert_threshold": 3,
+    "description": "Alert when pyramid units > 3"
+  },
+  "traffic_challenger": {
+    "auto_halt_dd": 4.0,
+    "auto_throttle_pf": 1.6,
+    "description": "Auto-actions for traffic management"
+  },
+  "consecutive_losses": {
+    "warning_threshold": 3,
+    "halt_threshold": 5,
+    "description": "Monitor consecutive loss streaks"
+  }
+}

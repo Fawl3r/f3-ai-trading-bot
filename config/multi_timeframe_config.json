@@ -1,0 +1,9 @@
+{
+  "ultra_short": "1m",
+  "short": "5m",
+  "medium_short": "15m",
+  "medium": "1h",
+  "medium_long": "4h",
+  "long": "1d",
+  "signals_per_day": 24
+}

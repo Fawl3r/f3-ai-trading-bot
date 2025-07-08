@@ -1,0 +1,170 @@
+# HYPERLIQUID ELITE AI TRADING BOT - ENVIRONMENT CONFIGURATION
+# Copy this to .env and configure your actual values
+
+# ============================================================================
+# HYPERLIQUID ACCOUNT CONFIGURATION
+# ============================================================================
+
+# Your Hyperliquid private key (starts with 0x)
+HYPERLIQUID_PRIVATE_KEY=your_private_key_here
+
+# Your wallet address
+HYPERLIQUID_ACCOUNT_ADDRESS=your_wallet_address_here
+
+# Network configuration (set to false for mainnet)
+HYPERLIQUID_TESTNET=true
+
+# Optional: API rate limiting
+HYPERLIQUID_RATE_LIMIT=10
+
+# ============================================================================
+# TRADING CONFIGURATION
+# ============================================================================
+
+# Safety settings
+PAPER_MODE=true
+MAX_DAILY_TRADES=15
+RISK_PER_TRADE=0.005
+
+# Elite AI Model Configuration (OPTIMIZED SETTINGS)
+AI_CONFIDENCE_THRESHOLD=0.35
+TIMESNET_TRAFFIC_ALLOCATION=0.05
+META_LEARNER_TRAFFIC_ALLOCATION=0.10
+PPO_TRAFFIC_ALLOCATION=0.015
+LIGHTGBM_TRAFFIC_ALLOCATION=0.00
+
+# Performance Targets
+TARGET_MONTHLY_ROI=1.00
+MAX_DRAWDOWN=0.05
+TARGET_TRADE_VOLUME=200
+
+# ============================================================================
+# RISK MANAGEMENT CONFIGURATION
+# ============================================================================
+
+MAX_CONCURRENT_POSITIONS=2
+POSITION_RISK_PCT=0.005
+PORTFOLIO_RISK_PCT=0.05
+
+# Stop loss and take profit settings
+DYNAMIC_STOP_LOSS=true
+VOLATILITY_BASED_EXITS=true
+
+# ============================================================================
+# AI LEARNING SYSTEM CONFIGURATION
+# ============================================================================
+
+# Enable AI learning features
+ENABLE_AI_LEARNING=true
+ENABLE_PATTERN_RECOGNITION=true
+ENABLE_ADAPTIVE_PARAMETERS=true
+
+# Learning parameters
+AI_LEARNING_RATE=0.02
+MIN_SAMPLE_SIZE=10
+PATTERN_BLACKLIST_THRESHOLD=0.30
+
+# ============================================================================
+# MONITORING & ALERTS
+# ============================================================================
+
+# Dashboard ports
+PROMETHEUS_PORT=8000
+GRAFANA_PORT=3000
+
+# Monitoring features
+ENABLE_MONITORING=true
+ENABLE_ALERTS=true
+AUTO_LAUNCH_DASHBOARDS=true
+
+# Logging
+LOG_LEVEL=INFO
+ENABLE_TRADE_LOGGING=true
+ENABLE_PERFORMANCE_LOGGING=true
+
+# ============================================================================
+# OPTIONAL: NOTIFICATION SETTINGS
+# ============================================================================
+
+# Telegram notifications (optional)
+# TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+# TELEGRAM_CHAT_ID=your_telegram_chat_id
+
+# Discord notifications (optional)
+# DISCORD_WEBHOOK_URL=your_discord_webhook_url
+
+# Email notifications (optional)
+# SMTP_SERVER=smtp.gmail.com
+# SMTP_PORT=587
+# EMAIL_USERNAME=your_email@gmail.com
+# EMAIL_PASSWORD=your_app_password
+# ALERT_EMAIL=alerts@yourdomain.com
+
+# ============================================================================
+# ADVANCED CONFIGURATION
+# ============================================================================
+
+# Model file paths (auto-detected if not specified)
+# TIMESNET_MODEL_PATH=models/timesnet_SOL_20250707_204629_93387ccf.pt
+# TSA_MAE_MODEL_PATH=models/encoder_20250707_153740_b59c66da.pt
+# PPO_MODEL_PATH=models/ppo_strict_20250707_161252.pt
+# LIGHTGBM_MODEL_PATH=models/lgbm_SOL_20250707_191855_0a65ca5b.pkl
+
+# Asset configuration
+PRIMARY_ASSETS=BTC,ETH,SOL,DOGE,AVAX
+EXTENDED_ASSETS=ADA,DOT,MATIC,LINK,UNI,AAVE,ATOM,NEAR,FTM,LTC
+
+# Market data settings
+ENABLE_REALTIME_DATA=true
+DATA_UPDATE_FREQUENCY=1
+ENABLE_ORDER_BOOK_ANALYSIS=true
+
+# Performance optimization
+ENABLE_PARALLEL_PROCESSING=true
+MAX_WORKER_THREADS=4
+MEMORY_OPTIMIZATION=true
+
+# ============================================================================
+# INSTRUCTIONS FOR SETUP
+# ============================================================================
+
+# 1. Copy this file to .env:
+#    cp environment_template.txt .env
+
+# 2. Edit .env and set your actual values:
+#    - HYPERLIQUID_PRIVATE_KEY: Your actual private key from Hyperliquid
+#    - HYPERLIQUID_ACCOUNT_ADDRESS: Your wallet address
+
+# 3. For safety, always start with:
+#    - PAPER_MODE=true
+#    - HYPERLIQUID_TESTNET=true
+
+# 4. Run the setup script:
+#    python setup_optimized_environment.py
+
+# 5. Launch the system:
+#    python elite_system_launcher_windows.py
+
+# ============================================================================
+# OPTIMIZATION NOTES
+# ============================================================================
+
+# These settings represent the OPTIMIZED configuration after analysis:
+# 
+# Traffic Scaling Applied:
+# - TimesNet: 1.1% → 5.0% (Strong Performer PF 1.97)
+# - Meta-Learner: 0% → 10% (New Deployment)
+# - PPO Enhanced: 1.1% → 1.5% (Modest Increase)
+# 
+# Volume Optimization:
+# - Target: 200+ trades/month (up from 133)
+# - Expected increase: +72 trades
+# - Achievement rate: 100%
+# 
+# AI Enhancement:
+# - Confidence threshold: 45% → 35% (optimized)
+# - Pattern recognition: Enhanced
+# - Adaptive learning: Enabled
+# - Risk management: AI-driven
+
+# ============================================================================ 

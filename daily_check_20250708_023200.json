@@ -1,0 +1,91 @@
+{
+  "timestamp": "2025-07-08T02:32:00.039706",
+  "horizon_48h": {
+    "timestamp": "2025-07-08T02:32:00.041705",
+    "horizon": "48h",
+    "alerts": [
+      "\ud83d\udea8 HALT: lightgbm_tsa_mae PF=1.46 < 1.5",
+      "\u26a0\ufe0f WARN: ppo_strict_enhanced PF=1.68 < 1.7",
+      "\ud83d\udcc9 LOW: Total bandit flow 3.3% < 4.0%"
+    ],
+    "actions": [
+      "throttle_lightgbm_tsa_mae_to_0pct"
+    ],
+    "performance": {
+      "timesnet_longrange": {
+        "pf_30": 1.974432550041928,
+        "dd_pct": 0.004053665571305915,
+        "trades": 41,
+        "traffic_allocation": 0.011
+      },
+      "lightgbm_tsa_mae": {
+        "pf_30": 1.459340086152031,
+        "dd_pct": 0.007723470719005036,
+        "trades": 43,
+        "traffic_allocation": 0.011
+      },
+      "ppo_strict_enhanced": {
+        "pf_30": 1.6778605963551223,
+        "dd_pct": 0.005703199915833084,
+        "trades": 36,
+        "traffic_allocation": 0.011
+      }
+    },
+    "total_traffic": 0.033,
+    "portfolio_dd": 0.00019228369826758434
+  },
+  "day_3_7": {
+    "timestamp": "2025-07-08T02:32:00.041705",
+    "horizon": "day_3_7",
+    "alerts": [
+      "\ud83d\udcca VOLUME: 118 total trades < 200 target",
+      "\ud83d\udd17 HIGH CORRELATION: 0.86 > 0.85"
+    ],
+    "actions": [
+      "reject_or_blend_correlated_models"
+    ],
+    "daily_trade_flow": 16.857142857142858,
+    "total_trades": 118,
+    "correlation": 0.8641955484367077
+  },
+  "week_2": {
+    "timestamp": "2025-07-08T02:32:00.041705",
+    "horizon": "week_2",
+    "alerts": [
+      "\ud83d\udcca META ROC: +0.018 < +0.020",
+      "\u2705 META READY: Deploy at 10% traffic (PF=2.03, DD=2.9%)"
+    ],
+    "actions": [
+      "try_xgboost_or_shallow_mlp_blender",
+      "deploy_meta_10pct_traffic"
+    ],
+    "meta_roc_improvement": 0.018082482218538965,
+    "meta_pf": 2.030840488475989,
+    "meta_dd": 0.02945950772670092,
+    "meta_trades": 150
+  },
+  "week_3_4": {
+    "timestamp": "2025-07-08T02:32:00.041705",
+    "horizon": "week_3_4",
+    "alerts": [],
+    "actions": [],
+    "high_performers": [
+      [
+        "timesnet_longrange",
+        2.2897793069478265,
+        0.011
+      ]
+    ],
+    "portfolio_dd": 0.00030858664938075134
+  },
+  "execution": {
+    "executed": [
+      "throttle_lightgbm_tsa_mae_to_0pct",
+      "logged_reject_or_blend_correlated_models",
+      "logged_try_xgboost_or_shallow_mlp_blender",
+      "logged_deploy_meta_10pct_traffic"
+    ],
+    "failed": [],
+    "timestamp": "2025-07-08T02:32:00.052708"
+  }
+}

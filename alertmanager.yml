@@ -1,0 +1,41 @@
+global:
+  smtp_from: alerts@tradingbot.com
+  smtp_smarthost: localhost:587
+receivers:
+- email_configs:
+  - body: '
+
+      Alert: {{ .GroupLabels.alertname }}
+
+      Severity: {{ .GroupLabels.severity }}
+
+      Component: {{ .GroupLabels.component }}
+
+
+      {{ range .Alerts }}
+
+      Description: {{ .Annotations.description }}
+
+      Value: {{ .Annotations.value }}
+
+      Started: {{ .StartsAt }}
+
+      {{ end }}
+
+
+      Runbook: {{ .CommonAnnotations.runbook_url }}
+
+      '
+    subject: "\U0001F6A8 Elite Trading Alert: {{ .GroupLabels.alertname }}"
+    to: trading-ops@company.com
+  name: elite-trading-alerts
+  webhook_configs:
+  - send_resolved: true
+    url: http://localhost:9999/webhook
+route:
+  group_by:
+  - alertname
+  group_interval: 10s
+  group_wait: 10s
+  receiver: elite-trading-alerts
+  repeat_interval: 1h

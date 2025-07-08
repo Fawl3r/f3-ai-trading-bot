@@ -1,0 +1,26 @@
+{
+  "total_losing_trades": 13,
+  "total_loss": -1038.507039647616,
+  "avg_loss": -79.88515689597047,
+  "largest_loss": -113.68268814278957,
+  "loss_distribution": {
+    "Medium": 7,
+    "Large": 4,
+    "Small": 2,
+    "Huge": 0
+  },
+  "avg_duration_hours": NaN,
+  "symbols_affected": {
+    "BTC": 7,
+    "SOL": 4,
+    "ETH": 2
+  },
+  "position_size_stats": {
+    "mean": 0.5755714049619942,
+    "max": 0.9125515523822983,
+    "std": 0.20062717968012125
+  },
+  "patterns": [
+    "\u26a0\ufe0f SYMBOL CONCENTRATION: 40%+ losses in BTC"
+  ]
+}

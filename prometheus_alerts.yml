@@ -1,0 +1,109 @@
+groups:
+- interval: 30s
+  name: elite_trading_alerts
+  rules:
+  - alert: ChallengerProfitFactorLow
+    annotations:
+      description: 'Challenger PF {{ $value }} is below 1.6 threshold. Action: Throttle
+        challenger to 0%; review logs'
+      runbook_url: https://wiki.company.com/trading/runbooks/challenger-pf-low
+      summary: Challenger profit factor below threshold
+    expr: elite_challenger_profit_factor_30 < 1.6
+    for: 2m
+    labels:
+      component: challenger_policy
+      severity: critical
+  - alert: ChallengerDrawdownHigh
+    annotations:
+      description: 'Challenger drawdown {{ $value }}% > 4.0%. Action: Auto-halt &
+        revert to prod'
+      runbook_url: https://wiki.company.com/trading/runbooks/drawdown-high
+      summary: Challenger drawdown exceeds limit
+    expr: elite_challenger_drawdown_pct > 4.0
+    for: 1m
+    labels:
+      component: risk_management
+      severity: critical
+  - alert: EncoderKLDivergenceHigh
+    annotations:
+      description: 'Encoder KL divergence {{ $value }} > 0.30. Action: Schedule 10-epoch
+        refresh tonight'
+      runbook_url: https://wiki.company.com/trading/runbooks/encoder-refresh
+      summary: Encoder KL divergence above threshold
+    expr: elite_encoder_kl_divergence > 0.30
+    for: 5m
+    labels:
+      component: ai_model
+      severity: warning
+  - alert: GPUUtilizationHigh
+    annotations:
+      description: 'GPU utilization {{ $value }}% > 60% (possible loop). Action: Restart
+        learner pod'
+      runbook_url: https://wiki.company.com/trading/runbooks/gpu-restart
+      summary: GPU utilization too high
+    expr: elite_gpu_utilization_pct > 60
+    for: 3m
+    labels:
+      component: infrastructure
+      severity: warning
+  - alert: TradingVolumeAnomalyHigh
+    annotations:
+      description: Trade rate {{ $value }}/min is unusually high. Check for signal
+        spam or market conditions.
+      runbook_url: https://wiki.company.com/trading/runbooks/volume-anomaly
+      summary: Trading volume anomaly detected
+    expr: rate(elite_trades_total[5m]) > 0.5
+    for: 2m
+    labels:
+      component: trading_engine
+      severity: warning
+  - alert: WinRateBelowBaseline
+    annotations:
+      description: Win rate {{ $value }}% < 30%. Monitor strategy effectiveness.
+      runbook_url: https://wiki.company.com/trading/runbooks/win-rate-low
+      summary: Win rate below acceptable threshold
+    expr: elite_win_rate_percent < 30
+    for: 10m
+    labels:
+      component: strategy_performance
+      severity: warning
+  - alert: ConsecutiveLossesHigh
+    annotations:
+      description: '{{ $value }} consecutive losses. Review strategy and market conditions.'
+      runbook_url: https://wiki.company.com/trading/runbooks/consecutive-losses
+      summary: High consecutive losses detected
+    expr: elite_consecutive_losses >= 5
+    for: 1m
+    labels:
+      component: risk_management
+      severity: warning
+  - alert: APIErrorRateHigh
+    annotations:
+      description: API error rate {{ $value }}/min is elevated. Check exchange connectivity.
+      runbook_url: https://wiki.company.com/trading/runbooks/api-errors
+      summary: High API error rate
+    expr: rate(elite_api_errors_total[5m]) > 0.1
+    for: 2m
+    labels:
+      component: infrastructure
+      severity: warning
+  - alert: SystemDowntime
+    annotations:
+      description: Elite trading system is not responding. Check system health immediately.
+      runbook_url: https://wiki.company.com/trading/runbooks/system-down
+      summary: Trading system is down
+    expr: up{job="elite_trading_system"} == 0
+    for: 30s
+    labels:
+      component: system_health
+      severity: critical
+  - alert: AccountBalanceLow
+    annotations:
+      description: Current balance ${{ $value }} < $10. Risk of margin call.
+      runbook_url: https://wiki.company.com/trading/runbooks/low-balance
+      summary: Account balance critically low
+    expr: elite_balance_current < 10
+    for: 1m
+    labels:
+      component: risk_management
+      severity: critical

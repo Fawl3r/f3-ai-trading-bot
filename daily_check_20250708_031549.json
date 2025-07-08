@@ -1,0 +1,80 @@
+{
+  "timestamp": "2025-07-08T03:15:49.160702",
+  "horizon_48h": {
+    "timestamp": "2025-07-08T03:15:49.161703",
+    "horizon": "48h",
+    "alerts": [
+      "\u26a0\ufe0f WARN: lightgbm_tsa_mae PF=1.54 < 1.7",
+      "\ud83d\udcc9 LOW: Total bandit flow 3.3% < 4.0%"
+    ],
+    "actions": [],
+    "performance": {
+      "timesnet_longrange": {
+        "pf_30": 1.9683496222807677,
+        "dd_pct": 0.01022506671473873,
+        "trades": 52,
+        "traffic_allocation": 0.011
+      },
+      "lightgbm_tsa_mae": {
+        "pf_30": 1.5407317608051705,
+        "dd_pct": 0.0035285943389358966,
+        "trades": 46,
+        "traffic_allocation": 0.011
+      },
+      "ppo_strict_enhanced": {
+        "pf_30": 2.158869130563346,
+        "dd_pct": 0.0040114028120052094,
+        "trades": 37,
+        "traffic_allocation": 0.011
+      }
+    },
+    "total_traffic": 0.033,
+    "portfolio_dd": 0.00019541570252247818
+  },
+  "day_3_7": {
+    "timestamp": "2025-07-08T03:15:49.161703",
+    "horizon": "day_3_7",
+    "alerts": [
+      "\ud83d\udcca VOLUME: 133 total trades < 200 target"
+    ],
+    "actions": [],
+    "daily_trade_flow": 19.0,
+    "total_trades": 133,
+    "correlation": 0.839619443980392
+  },
+  "week_2": {
+    "timestamp": "2025-07-08T03:15:49.161703",
+    "horizon": "week_2",
+    "alerts": [
+      "\ud83d\udea8 META GATE FAIL: PF=1.74, DD=2.3% after 166 trades"
+    ],
+    "actions": [
+      "retrain_with_regularization"
+    ],
+    "meta_roc_improvement": 0.03950856208060664,
+    "meta_pf": 1.739114136036569,
+    "meta_dd": 0.02253525191374009,
+    "meta_trades": 166
+  },
+  "week_3_4": {
+    "timestamp": "2025-07-08T03:15:49.162702",
+    "horizon": "week_3_4",
+    "alerts": [],
+    "actions": [],
+    "high_performers": [
+      [
+        "lightgbm_tsa_mae",
+        2.138521851191348,
+        0.011
+      ]
+    ],
+    "portfolio_dd": 0.00021253628437054438
+  },
+  "execution": {
+    "executed": [
+      "logged_retrain_with_regularization"
+    ],
+    "failed": [],
+    "timestamp": "2025-07-08T03:15:49.162702"
+  }
+}

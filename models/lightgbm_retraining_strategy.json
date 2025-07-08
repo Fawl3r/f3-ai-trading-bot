@@ -1,0 +1,76 @@
+{
+  "data_preparation": {
+    "data_sources": [
+      "Historical OHLCV data (18 months)",
+      "Order book snapshots",
+      "Trade-by-trade data",
+      "Market microstructure features",
+      "Cross-asset correlation data"
+    ],
+    "data_quality": {
+      "outlier_removal": "IQR method with 1.5x threshold",
+      "missing_data": "Forward fill with interpolation",
+      "noise_reduction": "Kalman filtering for price series",
+      "feature_scaling": "RobustScaler for stability"
+    },
+    "label_engineering": {
+      "target_horizons": [
+        "5m",
+        "15m",
+        "1h"
+      ],
+      "return_calculation": "Log returns with volatility adjustment",
+      "classification_threshold": "Dynamic based on volatility regime",
+      "class_balancing": "SMOTE for minority class enhancement"
+    }
+  },
+  "training_pipeline": {
+    "feature_engineering": {
+      "step1": "Base technical indicators",
+      "step2": "Market microstructure features",
+      "step3": "Cross-asset features",
+      "step4": "Time-based features",
+      "step5": "Feature selection and validation"
+    },
+    "model_training": {
+      "validation_strategy": "Walk-forward analysis",
+      "hyperparameter_tuning": "Optuna optimization (100 trials)",
+      "early_stopping": "Monitor validation AUC",
+      "ensemble_components": "5 models with different seeds"
+    },
+    "performance_validation": {
+      "metrics": [
+        "AUC",
+        "Precision",
+        "Recall",
+        "F1",
+        "Profit Factor"
+      ],
+      "backtesting": "Out-of-sample testing on latest 3 months",
+      "stress_testing": "Performance under different market regimes",
+      "stability_check": "Feature importance consistency"
+    }
+  },
+  "deployment_criteria": {
+    "minimum_requirements": {
+      "validation_auc": 0.65,
+      "precision": 0.45,
+      "profit_factor": 2.0,
+      "max_drawdown": 0.05,
+      "feature_stability": 0.8
+    },
+    "target_performance": {
+      "validation_auc": 0.7,
+      "precision": 0.5,
+      "profit_factor": 2.3,
+      "expected_improvement": "50% over current model"
+    }
+  },
+  "implementation_timeline": {
+    "data_preparation": "2-3 hours",
+    "feature_engineering": "1-2 hours",
+    "model_training": "3-4 hours",
+    "validation_testing": "1 hour",
+    "total_time": "7-10 hours"
+  }
+}

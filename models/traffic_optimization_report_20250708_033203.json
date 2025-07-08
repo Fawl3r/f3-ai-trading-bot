@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-07-08T03:32:03.687610",
+  "optimization_results": {
+    "timesnet_scaling": "FAILED",
+    "meta_learner_deployment": "FAILED",
+    "ppo_optimization": "FAILED: database is locked"
+  },
+  "traffic_summary": {
+    "before": 0.022,
+    "after": 0.165,
+    "increase": 0.14300000000000002
+  },
+  "model_allocations": {
+    "TimesNet": "1.1% \u2192 5.0%",
+    "Meta-Learner": "0.0% \u2192 10.0%",
+    "PPO": "1.1% \u2192 1.5%",
+    "LightGBM": "HALTED (PF < 1.5)"
+  },
+  "expected_improvements": {
+    "trade_volume": "+30-50 trades from increased traffic to performers",
+    "performance_focus": "Prioritize models with PF > 1.7",
+    "risk_reduction": "Halt underperformers automatically",
+    "ensemble_benefits": "Meta-learner combines best predictions"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ai_confidence_threshold": 0.35,
+  "ensemble_agreement": 0.5,
+  "signal_strength_min": 1.5,
+  "volume_confirmation": 1.2,
+  "momentum_threshold": 0.015
+}

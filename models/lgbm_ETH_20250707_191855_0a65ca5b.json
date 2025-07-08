@@ -1,0 +1,29 @@
+{
+  "model_type": "lightgbm",
+  "symbols": [
+    "SOL",
+    "BTC",
+    "ETH"
+  ],
+  "encoder_path": "models/encoder_20250707_153740_b59c66da.pt",
+  "best_params": {
+    "num_leaves": 184,
+    "learning_rate": 0.21534104756085318,
+    "feature_fraction": 0.41235069657748147,
+    "bagging_fraction": 0.9819459112971965,
+    "bagging_freq": 6,
+    "min_child_samples": 25,
+    "reg_alpha": 1.8182496720710062,
+    "reg_lambda": 1.8340450985343382,
+    "objective": "multiclass",
+    "num_class": 3,
+    "metric": "multi_logloss",
+    "boosting_type": "gbdt",
+    "verbosity": -1,
+    "random_state": 42
+  },
+  "best_accuracy": 0.3521683853651646,
+  "timestamp": "20250707_191855",
+  "model_hash": "0a65ca5b",
+  "feature_dim": 79
+}

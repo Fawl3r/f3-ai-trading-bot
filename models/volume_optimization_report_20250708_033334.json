@@ -1,0 +1,190 @@
+{
+  "timestamp": "2025-07-08T03:33:34.921455",
+  "current_metrics": {
+    "trade_volume": 133,
+    "target_volume": 200,
+    "volume_deficit": 67,
+    "lightgbm_pf": 1.54,
+    "target_pf": 2.0,
+    "total_traffic": 0.033,
+    "target_traffic": 0.05,
+    "timesnet_pf": 1.97,
+    "ppo_pf": 1.68
+  },
+  "bottleneck_analysis": {
+    "asset_selection": {
+      "issue": "Too restrictive selection criteria",
+      "impact": "Missing 20-30% of potential opportunities",
+      "severity": "HIGH",
+      "fix_priority": 1
+    },
+    "signal_confidence": {
+      "issue": "High confidence thresholds (45%+)",
+      "impact": "Filtering out viable trades",
+      "severity": "MEDIUM",
+      "fix_priority": 2
+    },
+    "model_performance": {
+      "issue": "LightGBM halted (PF 1.54 < 2.0)",
+      "impact": "Lost model contributing to ensemble",
+      "severity": "HIGH",
+      "fix_priority": 1
+    },
+    "traffic_allocation": {
+      "issue": "Low total traffic (3.3% vs 5% minimum)",
+      "impact": "Underutilizing AI capabilities",
+      "severity": "MEDIUM",
+      "fix_priority": 3
+    },
+    "timeframe_coverage": {
+      "issue": "Limited to higher timeframes",
+      "impact": "Missing intraday opportunities",
+      "severity": "MEDIUM",
+      "fix_priority": 3
+    }
+  },
+  "optimizations": {
+    "asset_selector": {
+      "strategy": "Asset Selector Loosening",
+      "current_criteria": {
+        "min_volume_24h": 100000000,
+        "min_volatility": 0.03,
+        "min_liquidity_depth": 50000,
+        "max_spread_bps": 5,
+        "min_market_cap": 1000000000
+      },
+      "optimized_criteria": {
+        "min_volume_24h": 50000000,
+        "min_volatility": 0.02,
+        "min_liquidity_depth": 25000,
+        "max_spread_bps": 8,
+        "min_market_cap": 500000000
+      },
+      "expected_new_assets": [
+        "AVAX",
+        "MATIC",
+        "DOT",
+        "LINK",
+        "UNI",
+        "LTC"
+      ],
+      "expected_volume_increase": 24,
+      "risk_assessment": "LOW - Broader asset set with maintained quality standards",
+      "implementation_file": "config/optimized_asset_selector.json"
+    },
+    "signal_thresholds": {
+      "strategy": "Signal Threshold Optimization",
+      "current_thresholds": {
+        "ai_confidence_threshold": 0.45,
+        "ensemble_agreement": 0.6,
+        "signal_strength_min": 2.0,
+        "volume_confirmation": 1.5,
+        "momentum_threshold": 0.02
+      },
+      "optimized_thresholds": {
+        "ai_confidence_threshold": 0.35,
+        "ensemble_agreement": 0.5,
+        "signal_strength_min": 1.5,
+        "volume_confirmation": 1.2,
+        "momentum_threshold": 0.015
+      },
+      "reduction_factor": 0.22,
+      "expected_volume_increase": 29,
+      "risk_assessment": "MEDIUM - Lower thresholds may reduce precision but increase recall",
+      "implementation_file": "config/optimized_signal_thresholds.json"
+    },
+    "lightgbm_enhancement": {
+      "strategy": "LightGBM Feature Enhancement",
+      "current_performance": {
+        "current_pf": 1.54,
+        "target_pf": 2.0,
+        "improvement_needed": 0.46,
+        "current_features": 79,
+        "current_accuracy": 0.3522
+      },
+      "enhancement_strategies": {
+        "feature_engineering": {
+          "new_features": [
+            "Multi-timeframe RSI divergence",
+            "Volume-weighted momentum indicators",
+            "Order book imbalance metrics",
+            "Volatility regime classification",
+            "Cross-asset correlation features",
+            "Market microstructure patterns"
+          ],
+          "expected_feature_count": 120,
+          "expected_accuracy_boost": 0.08
+        },
+        "model_architecture": {
+          "hyperparameter_optimization": "Optuna 100 trials",
+          "boosting_rounds": 2000,
+          "early_stopping": 100,
+          "learning_rate": 0.05,
+          "max_depth": 8,
+          "expected_performance_boost": 0.15
+        },
+        "training_data": {
+          "data_expansion": "18 months (vs 12 months)",
+          "data_quality_filtering": "Enhanced noise reduction",
+          "label_engineering": "Multi-horizon targets",
+          "cross_validation": "5-fold time series CV",
+          "expected_robustness_boost": 0.1
+        }
+      },
+      "expected_accuracy_improvement": 0.33,
+      "expected_new_pf": 2.035,
+      "implementation_priority": "HIGH",
+      "estimated_training_time": "2-4 hours",
+      "implementation_file": "models/enhanced_lightgbm_config.json"
+    },
+    "timeframe_expansion": {
+      "strategy": "Multi-Timeframe Expansion",
+      "current_timeframes": {
+        "primary": "4h",
+        "secondary": "1h",
+        "coverage": "Medium frequency only",
+        "signals_per_day": 6
+      },
+      "expanded_timeframes": {
+        "ultra_short": "1m",
+        "short": "5m",
+        "medium_short": "15m",
+        "medium": "1h",
+        "medium_long": "4h",
+        "long": "1d",
+        "signals_per_day": 24
+      },
+      "timeframe_multiplier": 5,
+      "expected_volume_increase": 19,
+      "risk_assessment": "MEDIUM - More signals but potential noise increase",
+      "implementation_complexity": "HIGH",
+      "implementation_file": "config/multi_timeframe_config.json"
+    }
+  },
+  "impact_summary": {
+    "total_expected_volume_increase": 72,
+    "target_achievement_rate": 1.0,
+    "implementation_priority_order": [
+      "Asset Selector Loosening",
+      "LightGBM Feature Enhancement",
+      "Signal Threshold Optimization",
+      "Multi-Timeframe Expansion"
+    ]
+  },
+  "risk_assessment": {
+    "overall_risk": "MEDIUM",
+    "mitigations": [
+      "Paper trading validation for all changes",
+      "Gradual rollout with monitoring",
+      "Circuit breakers for performance drops",
+      "Rollback procedures ready"
+    ]
+  },
+  "next_steps": [
+    "1. Implement asset selector optimization (lowest risk)",
+    "2. Begin LightGBM enhancement training",
+    "3. Test signal threshold changes in paper mode",
+    "4. Develop multi-timeframe integration",
+    "5. Monitor performance and adjust"
+  ]
+}

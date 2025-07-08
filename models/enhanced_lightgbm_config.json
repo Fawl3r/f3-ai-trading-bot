@@ -1,0 +1,106 @@
+{
+  "enhanced_features": {
+    "technical_indicators": {
+      "momentum_features": [
+        "RSI_divergence_5m",
+        "RSI_divergence_15m",
+        "RSI_divergence_1h",
+        "MACD_histogram_slope",
+        "MACD_signal_divergence",
+        "Stochastic_K_D_cross",
+        "Williams_R_momentum",
+        "CCI_momentum_bands",
+        "ROC_multi_timeframe"
+      ],
+      "volatility_features": [
+        "ATR_normalized",
+        "Bollinger_band_squeeze",
+        "Volatility_regime_HMM",
+        "GARCH_volatility_forecast",
+        "Parkinson_volatility",
+        "Yang_Zhang_volatility"
+      ],
+      "volume_features": [
+        "Volume_price_trend",
+        "On_balance_volume_slope",
+        "Volume_weighted_RSI",
+        "Accumulation_distribution",
+        "Klinger_oscillator",
+        "Money_flow_index"
+      ],
+      "price_action_features": [
+        "Support_resistance_levels",
+        "Fibonacci_retracements",
+        "Pivot_point_analysis",
+        "Gap_analysis",
+        "Candlestick_patterns",
+        "Price_channel_position"
+      ]
+    },
+    "market_microstructure": {
+      "orderbook_features": [
+        "Bid_ask_spread_volatility",
+        "Order_book_imbalance",
+        "Large_order_detection",
+        "Liquidity_depth_ratio",
+        "Price_impact_estimate",
+        "Market_depth_profile"
+      ],
+      "trading_features": [
+        "Trade_size_distribution",
+        "Buy_sell_pressure",
+        "Tick_direction_momentum",
+        "Volume_at_price",
+        "Time_between_trades",
+        "Trade_arrival_rate"
+      ]
+    },
+    "cross_asset_features": {
+      "correlation_features": [
+        "BTC_correlation_1h",
+        "ETH_correlation_1h",
+        "DXY_correlation",
+        "SPX_correlation",
+        "Sector_rotation_signal",
+        "Risk_on_off_indicator"
+      ],
+      "regime_features": [
+        "Market_regime_HMM",
+        "Volatility_regime",
+        "Trend_regime_classification",
+        "Liquidity_regime",
+        "Risk_regime_indicator",
+        "Macro_regime_signal"
+      ]
+    },
+    "time_features": {
+      "temporal_features": [
+        "Hour_of_day",
+        "Day_of_week",
+        "Month_of_year",
+        "Trading_session",
+        "Time_to_major_events",
+        "Market_open_close_effects",
+        "Weekend_effects"
+      ],
+      "cyclical_features": [
+        "Intraday_patterns",
+        "Weekly_patterns",
+        "Monthly_patterns",
+        "Seasonal_adjustments",
+        "Holiday_effects",
+        "Earnings_season_effects"
+      ]
+    }
+  },
+  "feature_count": {
+    "current": 79,
+    "enhanced": 64,
+    "increase": -15
+  },
+  "expected_improvements": {
+    "accuracy_boost": 0.08,
+    "pf_improvement": 0.25,
+    "robustness": 0.15
+  }
+}

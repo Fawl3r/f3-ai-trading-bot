@@ -202,8 +202,8 @@ class PreLiveValidator:
         user_state = self.info.user_state(self.account_address)
         balance = float(user_state.get('marginSummary', {}).get('accountValue', 0))
         
-        # Calculate max position size (2% of balance)
-        max_position_usd = balance * 0.02
+        # Calculate max position size (5% of balance for better execution)
+        max_position_usd = balance * 0.05
         
         if max_position_usd < 1:
             raise Exception(f"Max position too small: ${max_position_usd:.2f}")

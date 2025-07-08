@@ -1,0 +1,192 @@
+{
+  "deployment_time": "2025-07-08T01:49:55.753437",
+  "models": {
+    "TSA-MAE Encoder": {
+      "files": [
+        "models\\encoder_0ab099cc_simple.pt",
+        "models\\encoder_1faf7bbd_simple.pt",
+        "models\\encoder_20250707_153608_34e1fd46.pt",
+        "models\\encoder_20250707_153610_3c4d5f5b.pt",
+        "models\\encoder_20250707_153612_33030392.pt",
+        "models\\encoder_20250707_153614_76287509.pt",
+        "models\\encoder_20250707_153616_f09355dc.pt",
+        "models\\encoder_20250707_153736_c0ed445d.pt",
+        "models\\encoder_20250707_153740_b59c66da.pt",
+        "models\\encoder_34e67273_simple.pt",
+        "models\\encoder_5167eea6_simple.pt",
+        "models\\encoder_5cadd5f5_simple.pt",
+        "models\\encoder_9e01cc18_simple.pt",
+        "models\\encoder_cfae4f22_simple.pt",
+        "models\\encoder_d30c6cd4_simple.pt",
+        "models\\encoder_d54f41ac_simple.pt",
+        "models\\encoder_fe5dc768_simple.pt"
+      ],
+      "latest": "models\\encoder_20250707_153740_b59c66da.pt",
+      "status": "Available",
+      "size": 0.8685741424560547,
+      "modified": "2025-07-07 15:37:40.786537"
+    },
+    "LightGBM + TSA-MAE": {
+      "files": [
+        "models\\lgbm_BTC_20250707_191855_0a65ca5b.pkl",
+        "models\\lgbm_ETH_20250707_191855_0a65ca5b.pkl",
+        "models\\lgbm_SOL_20250707_191855_0a65ca5b.pkl"
+      ],
+      "latest": "models\\lgbm_ETH_20250707_191855_0a65ca5b.pkl",
+      "status": "Available",
+      "size": 0.057511329650878906,
+      "modified": "2025-07-07 19:18:55.277142"
+    },
+    "TimesNet Long-Range": {
+      "files": [
+        "models\\timesnet_BTC_20250707_204629_93387ccf.pt",
+        "models\\timesnet_ETH_20250707_204629_93387ccf.pt",
+        "models\\timesnet_SOL_20250707_204629_93387ccf.pt"
+      ],
+      "latest": "models\\timesnet_ETH_20250707_204629_93387ccf.pt",
+      "status": "Available",
+      "size": 1.8716859817504883,
+      "modified": "2025-07-07 20:46:30.031057"
+    },
+    "PPO Optimized": {
+      "files": [
+        "models\\ppo_20250707_154526_eee02a74.pt",
+        "models\\ppo_strict_20250707_161252.pt"
+      ],
+      "latest": "models\\ppo_strict_20250707_161252.pt",
+      "status": "Available",
+      "size": 0.1972370147705078,
+      "modified": "2025-07-07 16:12:52.717557"
+    }
+  },
+  "policies": {
+    "status": "Success",
+    "policies": [
+      {
+        "id": 2,
+        "name": "reinforcement_20250707_unknown",
+        "type": "reinforcement",
+        "model_path": "models/ppo_strict_20250707_161252.pt",
+        "config": {
+          "penalty_weight": 0.1,
+          "episodes": 500,
+          "avg_reward": -2.275854808176924,
+          "final_metrics": {
+            "total_trades": 51,
+            "total_pnl": -5.2992670824372325,
+            "win_rate": 0.35294117647058826,
+            "profit_factor": 0.713252826014952,
+            "max_drawdown": 0.0017181109759442554,
+            "max_pyramid_units": 3,
+            "final_equity": 9987.313642116398
+          },
+          "model_hash": "unknown"
+        },
+        "traffic_allocation": 0.010625,
+        "alpha": 36.0,
+        "beta": 17.0,
+        "win_rate_estimate": 0.6792452830188679,
+        "file_exists": true
+      },
+      {
+        "id": 3,
+        "name": "lightgbm_tsa_mae",
+        "type": "supervised",
+        "model_path": "models/lgbm_SOL_20250707_191855_0a65ca5b.pkl",
+        "config": {
+          "model_type": "lightgbm",
+          "encoder_path": "models/encoder_20250707_153740_b59c66da.pt",
+          "symbols": [
+            "SOL",
+            "BTC",
+            "ETH"
+          ],
+          "features": 79,
+          "accuracy": 0.3522
+        },
+        "traffic_allocation": 0.010625,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "win_rate_estimate": 0.5,
+        "file_exists": true
+      },
+      {
+        "id": 4,
+        "name": "timesnet_longrange",
+        "type": "supervised",
+        "model_path": "models/timesnet_SOL_20250707_204629_93387ccf.pt",
+        "config": {
+          "model_type": "timesnet",
+          "window_size": 512,
+          "d_model": 64,
+          "heads": 4,
+          "layers": 3,
+          "symbols": [
+            "SOL",
+            "BTC",
+            "ETH"
+          ],
+          "accuracy": 0.8688
+        },
+        "traffic_allocation": 0.010625,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "win_rate_estimate": 0.5,
+        "file_exists": true
+      },
+      {
+        "id": 5,
+        "name": "ppo_strict_enhanced",
+        "type": "reinforcement",
+        "model_path": "models/ppo_strict_20250707_161252.pt",
+        "config": {
+          "model_type": "ppo",
+          "max_drawdown": 0.002,
+          "max_pyramid_units": 3,
+          "win_rate": 0.353,
+          "symbols": [
+            "SOL",
+            "BTC",
+            "ETH"
+          ]
+        },
+        "traffic_allocation": 0.010625,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "win_rate_estimate": 0.5,
+        "file_exists": true
+      }
+    ],
+    "total_allocation": 0.0425,
+    "active_count": 4
+  },
+  "infrastructure": {
+    "Database": {
+      "path": "models/policy_bandit.db",
+      "exists": true,
+      "size_kb": 44.0
+    },
+    "Models Directory": {
+      "path": "models",
+      "exists": true,
+      "file_count": 37
+    },
+    "Configuration Files": {
+      "register_policy": true,
+      "meta_learner": true,
+      "train_lgbm": true,
+      "train_timesnet": true,
+      "train_ppo_optuna": true
+    }
+  },
+  "performance_projection": {
+    "baseline_pf": 2.3,
+    "expected_pf": 2.3053125,
+    "pf_improvement": 0.0053125,
+    "dd_reduction": 7.4375e-05,
+    "target_range": [
+      2.7,
+      2.9
+    ]
+  }
+}
